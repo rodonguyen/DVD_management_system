@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ddyas\\Documents\\Cab301\\Asssigment_3_repos\\Assignment3\\Assignment3.csproj": {}
+    "D:\\QUT\\Laptop_Documents\\cab301_a3\\Assignment3.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ddyas\\Documents\\Cab301\\Asssigment_3_repos\\Assignment3\\Assignment3.csproj": {
+    "D:\\QUT\\Laptop_Documents\\cab301_a3\\Assignment3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ddyas\\Documents\\Cab301\\Asssigment_3_repos\\Assignment3\\Assignment3.csproj",
+        "projectUniqueName": "D:\\QUT\\Laptop_Documents\\cab301_a3\\Assignment3.csproj",
         "projectName": "Assignment3",
-        "projectPath": "C:\\Users\\ddyas\\Documents\\Cab301\\Asssigment_3_repos\\Assignment3\\Assignment3.csproj",
-        "packagesPath": "C:\\Users\\ddyas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ddyas\\Documents\\Cab301\\Asssigment_3_repos\\Assignment3\\obj\\",
+        "projectPath": "D:\\QUT\\Laptop_Documents\\cab301_a3\\Assignment3.csproj",
+        "packagesPath": "C:\\Users\\Duy Anh\\.nuget\\packages\\",
+        "outputPath": "D:\\QUT\\Laptop_Documents\\cab301_a3\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ddyas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Duy Anh\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -54,7 +54,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }
