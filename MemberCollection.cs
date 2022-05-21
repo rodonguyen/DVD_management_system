@@ -133,6 +133,30 @@ class MemberCollection : IMemberCollection
         return false;
     }
 
+    // Find a given member in this member collection 
+    // Pre-condition: nil
+    // Post-condition: return the reference of the member object in the member collection, if this member is in the member collection; return null otherwise; member collection remains unchanged
+    public IMember Find(IMember member)
+    {
+        if (IsEmpty()) return null;
+
+        int min = 0;
+        int max = count - 1;
+        while (min <= max)
+        {
+            int mid = (min + max) / 2;
+            if (member.CompareTo(members[mid]) == 0)
+                return members[mid];
+            else if (member.CompareTo(members[mid]) == 1)
+                min = mid + 1;
+            else
+                max = mid - 1;
+        }
+        System.Console.WriteLine("member {0} is not found in this MemberCollection Object.", member.ToString());
+        return null;
+    }
+
+
     // Remove all the members in this member collection
     // Pre-condition: nil
     // Post-condition: no member in this member collection 

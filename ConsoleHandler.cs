@@ -37,7 +37,7 @@ class ConsoleHandler
                 break;
             case 2:
                 Console.Clear();
-                //MemberLogin();
+                MemberLogin();
                 break;
         }
     }
@@ -58,10 +58,8 @@ class ConsoleHandler
     {
         Console.WriteLine("============================ Staff Login =============================");
         Console.WriteLine("  Enter staff's username and password                               \n");
-        Console.Write("  Username: ");
-        String username = Console.ReadLine();
-        Console.Write("  Password: ");
-        String password = Console.ReadLine();
+        Console.Write("    Username: ");      String username = Console.ReadLine();
+        Console.Write("    Password: ");      String password = Console.ReadLine();
 
         bool isValidUsername = username == "staff";
         bool isValidPassword = password == "today123";
@@ -72,15 +70,13 @@ class ConsoleHandler
         while ( !isValidUsername || !isValidPassword) {
             Console.Clear();
             Console.WriteLine("----------------------------------------------------------------------");
-            Console.WriteLine("|       Incorrect login details! Please enter again.                 |");
-            Console.WriteLine("|       Or enter 0 to either section to return to Main Menu.         |");
+            Console.WriteLine("|       Incorrect login details! Please try again.                   |");
+            //Console.WriteLine("|       Or enter 0 to either section to return to Main Menu.         |");
             Console.WriteLine("----------------------------------------------------------------------\n");
             Console.WriteLine("============================ Staff Login =============================");
             Console.WriteLine("  Enter staff's username and password");
-            Console.Write("    Username: ");
-            username = Console.ReadLine();
-            Console.Write("    Password: ");
-            password = Console.ReadLine();
+            Console.Write("    Username: ");       username = Console.ReadLine();
+            Console.Write("    Password: ");       password = Console.ReadLine();
 
             isValidUsername = username == "staff";
             isValidPassword = password == "today123";
@@ -141,15 +137,36 @@ class ConsoleHandler
     {
         Console.WriteLine("============================ Member Login =============================");
         Console.WriteLine("  Enter your member's first name, last name and password               ");
-        Console.Write("    First name: ");
-        String firstname = Console.ReadLine();
-        Console.Write("    Last name: ");
-        String lastname = Console.ReadLine();
-        Console.Write("    Password: ");
-        String password = Console.ReadLine();
+        Console.Write("    First name: ");     String firstname = Console.ReadLine();
+        Console.Write("    Last name: ");      String lastname  = Console.ReadLine();
+        Console.Write("    Password: ");       String password  = Console.ReadLine(); 
 
+        IMember memberFound = Program.memberCollection.Find(new Member(firstname, lastname));
+        bool isValidMember = false;
+        if (memberFound != null) {
+            isValidMember = memberFound.Pin == password;
+        }
 
+        while (!isValidMember)
+        {
+            Console.Clear();
+            Console.WriteLine("----------------------------------------------------------------------");
+            Console.WriteLine("|       Incorrect login details! Please try again.                   |");
+            Console.WriteLine("----------------------------------------------------------------------\n");
 
+            Console.WriteLine("============================ Member Login =============================");
+            Console.WriteLine("  Enter your member's first name, last name and password               ");
+            Console.Write("    First name: "); firstname = Console.ReadLine();
+            Console.Write("    Last name: "); lastname = Console.ReadLine();
+            Console.Write("    Password: "); password = Console.ReadLine();
+
+            memberFound = Program.memberCollection.Find(new Member(firstname, lastname));
+            if (memberFound != null)        {
+                isValidMember = memberFound.Pin == password;
+            }
+        }
+
+        MemberMenu();
     }
 
     private static void MemberMenu()
@@ -207,7 +224,7 @@ class ConsoleHandler
         Console.WriteLine("  6. Display all members who are currently renting a particular movie");
         Console.WriteLine("  0. Return to the main menu");
         Console.WriteLine("=====================================================================");
-        Console.Write("\n  Enter your choice (1/2/3/4/5/6/0) => ");
+        Console.Write("\n\n  Enter your choice (1/2/3/4/5/6/0) => ");
     }
 
     private static void DisplayMemberMenu()
@@ -221,7 +238,7 @@ class ConsoleHandler
         Console.WriteLine("  6. Display the top 3 movies rented by the members");
         Console.WriteLine("  0. Return to the main menu");
         Console.WriteLine("=======================================================================");
-        Console.Write("\n  Enter your choice (1/2/3/4/5/6/0) => ");
+        Console.Write("\n\n  Enter your choice (1/2/3/4/5/6/0) => ");
     }
 
 

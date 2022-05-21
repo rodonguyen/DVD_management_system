@@ -4,8 +4,18 @@ using System.Diagnostics;
 
 class Program
 {
+    public static MemberCollection memberCollection = new MemberCollection(100000);
+    public static MovieCollection movieCollection = new MovieCollection();
+
     static void Main()
     {
+        memberCollection.Add(new Member("D", "D", "0444455555", "1111"));
+        memberCollection.Add(new Member("C", "C", "0444455555", "1111"));
+        memberCollection.Add(new Member("A", "A", "0444455555", "1111"));
+        memberCollection.Add(new Member("E", "A", "0444455555", "1111"));
+        memberCollection.Add(new Member("E", "E", "0444455555", "1111"));
+        memberCollection.Add(new Member("F", "F", "0444455555", "2222"));
+
         ConsoleHandler.MainMenu();
     }
 

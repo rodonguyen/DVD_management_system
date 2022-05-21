@@ -1,0 +1,14 @@
+D:\QUT\Laptop_Documents\cab301_a3\bin\Release\netcoreapp3.1\Assignment3.exe
+D:\QUT\Laptop_Documents\cab301_a3\bin\Release\netcoreapp3.1\Assignment3.deps.json
+D:\QUT\Laptop_Documents\cab301_a3\bin\Release\netcoreapp3.1\Assignment3.runtimeconfig.json
+D:\QUT\Laptop_Documents\cab301_a3\bin\Release\netcoreapp3.1\Assignment3.runtimeconfig.dev.json
+D:\QUT\Laptop_Documents\cab301_a3\bin\Release\netcoreapp3.1\Assignment3.dll
+D:\QUT\Laptop_Documents\cab301_a3\bin\Release\netcoreapp3.1\Assignment3.pdb
+D:\QUT\Laptop_Documents\cab301_a3\obj\Release\netcoreapp3.1\Assignment3.csproj.AssemblyReference.cache
+D:\QUT\Laptop_Documents\cab301_a3\obj\Release\netcoreapp3.1\Assignment3.GeneratedMSBuildEditorConfig.editorconfig
+D:\QUT\Laptop_Documents\cab301_a3\obj\Release\netcoreapp3.1\Assignment3.AssemblyInfoInputs.cache
+D:\QUT\Laptop_Documents\cab301_a3\obj\Release\netcoreapp3.1\Assignment3.AssemblyInfo.cs
+D:\QUT\Laptop_Documents\cab301_a3\obj\Release\netcoreapp3.1\Assignment3.csproj.CoreCompileInputs.cache
+D:\QUT\Laptop_Documents\cab301_a3\obj\Release\netcoreapp3.1\Assignment3.dll
+D:\QUT\Laptop_Documents\cab301_a3\obj\Release\netcoreapp3.1\Assignment3.pdb
+D:\QUT\Laptop_Documents\cab301_a3\obj\Release\netcoreapp3.1\Assignment3.genruntimeconfig.cache
