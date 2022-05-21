@@ -63,7 +63,7 @@ class MemberCollection : IMemberCollection
     public void Add(IMember member)
     {
         if (!IsFull() && !Search(member))     {
-            Console.WriteLine($"Adding member {member.ToString()}...");
+            System.Console.WriteLine($"Adding member {member.ToString()}...");
             for (int i = 0; i < count + 1; i++)
             {
                 // Reach the position after the final member OR no member exists so assign to the first element
@@ -82,7 +82,7 @@ class MemberCollection : IMemberCollection
             count++;
         }
         else
-            Console.WriteLine("MemberCollection is Full or member to be added is duplicate: {0}.", member.ToString());
+            System.Console.WriteLine("MemberCollection is Full or member to be added is duplicate: {0}.", member.ToString());
     }
 
     // Remove a given member out of this member collection
@@ -106,7 +106,7 @@ class MemberCollection : IMemberCollection
             count--;
 
         } else
-            Console.WriteLine("member to be deleted is not found in this MemberCollection: {0}", aMember.ToString());
+            System.Console.WriteLine("member to be deleted is not found in this MemberCollection: {0}", aMember.ToString());
 
     }
 
@@ -129,7 +129,7 @@ class MemberCollection : IMemberCollection
             else
                 max = mid - 1;
         }
-        Console.WriteLine("member {0} is not found in this MemberCollection Object.", member.ToString());
+        System.Console.WriteLine("member {0} is not found in this MemberCollection Object.", member.ToString());
         return false;
     }
 
