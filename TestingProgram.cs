@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.IO;
-using System.Text;
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Diagnostics;
 
 class Program
@@ -26,7 +20,8 @@ class Program
 
 
 
-    static void Main(String[] args)
+
+    static void NotMain()
     {
         //// ---------- Testing IsValidContactNumber ----------
         //Console.WriteLine("\n--------- Testing IsValidContactNumber ----------");
