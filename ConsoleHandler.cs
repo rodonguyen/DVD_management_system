@@ -15,9 +15,9 @@ class ConsoleHandler
         {
             Console.Clear();
 
-            Console.WriteLine( "---------------------------------------------------------------------");
+            Console.WriteLine( "-----------------------------------------------------------------------");
             Console.WriteLine($"  Invalid choice ({choice}): Your choice must be an integer from 0 to 2!");
-            Console.WriteLine( "---------------------------------------------------------------------\n");
+            Console.WriteLine( "-----------------------------------------------------------------------\n");
 
             DisplayMainMenu();
             //Console.CursorLeft -= 25;  // Move cursor back, near the arrow
@@ -46,7 +46,7 @@ class ConsoleHandler
     private static void DisplayMainMenu()
     {
         Console.WriteLine("Welcome to the Community Library Movie DVD Management System");
-        Console.WriteLine("======================== Main Menu =========================");
+        Console.WriteLine("======================== MAIN MENU =========================");
         Console.WriteLine("  1. Staff Login");
         Console.WriteLine("  2. Member Login");
         Console.WriteLine("  0. Exit");
@@ -76,17 +76,17 @@ class ConsoleHandler
             Console.WriteLine("|       Or enter 0 to either section to return to Main Menu.         |");
             Console.WriteLine("----------------------------------------------------------------------\n");
             Console.WriteLine("============================ Staff Login =============================");
-            Console.WriteLine("  Enter staff's username and password                               \n");
-            Console.Write("  Username: ");
+            Console.WriteLine("  Enter staff's username and password");
+            Console.Write("    Username: ");
             username = Console.ReadLine();
-            Console.Write("  Password: ");
+            Console.Write("    Password: ");
             password = Console.ReadLine();
 
             isValidUsername = username == "staff";
             isValidPassword = password == "today123";
-            isGoingBackToMainMenu = username == "0" || password == "0";
 
-            if (isGoingBackToMainMenu) MainMenu();
+            //isGoingBackToMainMenu = username == "0" || password == "0";
+            //if (isGoingBackToMainMenu) MainMenu();
         }
         StaffMenu();
     }
@@ -134,7 +134,67 @@ class ConsoleHandler
                 Console.WriteLine("To be implemented...");
                 break;
         }
+    }
 
+
+    private static void MemberLogin()
+    {
+        Console.WriteLine("============================ Member Login =============================");
+        Console.WriteLine("  Enter your member's first name, last name and password               ");
+        Console.Write("    First name: ");
+        String firstname = Console.ReadLine();
+        Console.Write("    Last name: ");
+        String lastname = Console.ReadLine();
+        Console.Write("    Password: ");
+        String password = Console.ReadLine();
+
+
+
+    }
+
+    private static void MemberMenu()
+    {
+        Console.Clear();
+        DisplayMemberMenu();
+
+        String choice = Console.ReadLine();
+        bool isValidChoice = CheckChoice(choice, 6);
+
+        while (!isValidChoice) {
+            Console.Clear();
+            Console.WriteLine("---------------------------------------------------------------------------");
+            Console.WriteLine($"  Invalid choice ({choice}): Your choice must be an integer from 0 to 6!");
+            Console.WriteLine("---------------------------------------------------------------------------\n");
+
+            DisplayMemberMenu();
+            choice = Console.ReadLine();
+            isValidChoice = CheckChoice(choice, 6);
+        }
+
+        // Handle the valid choice
+        switch (int.Parse(choice)) {
+            case 0:
+                MainMenu();
+                break;
+            case 1:
+                Console.WriteLine("To be implemented...");
+                break;
+            case 2:
+                Console.WriteLine("To be implemented...");
+                break;
+            case 3:
+                Console.WriteLine("To be implemented...");
+                break;
+            case 4:
+                Console.WriteLine("To be implemented...");
+                break;
+            case 5:
+                Console.WriteLine("To be implemented...");
+                break;
+            case 6:
+                Console.WriteLine("To be implemented...");
+                break;
+        }
     }
     private static void DisplayStaffMenu()
     {
