@@ -65,13 +65,15 @@ class ConsoleHandler
 
         bool isValidUsername = username == "staff";
         bool isValidPassword = password == "today123";
+        bool isGoingBackToMainMenu = username == "0" || password == "0";
 
-        while ( !isValidUsername || !isValidPassword) 
-        {
+
+        if (isGoingBackToMainMenu) MainMenu();
+        while ( !isValidUsername || !isValidPassword) {
             Console.Clear();
             Console.WriteLine("----------------------------------------------------------------------");
             Console.WriteLine("|       Incorrect login details! Please enter again.                 |");
-            Console.WriteLine("|       Or enter 0 to return to Main Menu.                           |");
+            Console.WriteLine("|       Or enter 0 to either section to return to Main Menu.         |");
             Console.WriteLine("----------------------------------------------------------------------\n");
             Console.WriteLine("============================ Staff Login =============================");
             Console.WriteLine("  Enter staff's username and password                               \n");
@@ -82,8 +84,10 @@ class ConsoleHandler
 
             isValidUsername = username == "staff";
             isValidPassword = password == "today123";
-        }
+            isGoingBackToMainMenu = username == "0" || password == "0";
 
+            if (isGoingBackToMainMenu) MainMenu();
+        }
         StaffMenu();
     }
 
@@ -95,8 +99,7 @@ class ConsoleHandler
         String choice = Console.ReadLine();
         bool isValidChoice = CheckChoice(choice, 6);
 
-        while (!isValidChoice)
-        {
+        while (!isValidChoice) {
             Console.Clear();
             Console.WriteLine("---------------------------------------------------------------------------");
             Console.WriteLine($"  Invalid choice ({choice}): Your choice must be an integer from 0 to 6!");
@@ -108,8 +111,7 @@ class ConsoleHandler
         }
 
         // Handle the valid choice
-        switch (int.Parse(choice))
-        {
+        switch (int.Parse(choice)) {
             case 0:
                 MainMenu();
                 break;
