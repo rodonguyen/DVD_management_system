@@ -217,7 +217,8 @@ class ConsoleHandler
                 break;
             case 6:
                 //Display a member’s contact phone number, given the member’s full name.
-                Console.WriteLine("To be implemented...");
+                staffFunctions.PrintBorrowersofMovie(Program.movieCollection);
+                StaffMenu();
                 break;
         }
     }

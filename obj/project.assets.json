@@ -8,19 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\ddyas\\.nuget\\packages\\": {}
+    "C:\\Users\\Shay\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ddyas\\Documents\\Cab301\\Asssigment_3_repos\\Assignment3.csproj",
+      "projectUniqueName": "C:\\Users\\Shay\\Documents\\QUT Drive\\CAB301_Assignment_3\\Assignment3.csproj",
       "projectName": "Assignment3",
-      "projectPath": "C:\\Users\\ddyas\\Documents\\Cab301\\Asssigment_3_repos\\Assignment3.csproj",
-      "packagesPath": "C:\\Users\\ddyas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ddyas\\Documents\\Cab301\\Asssigment_3_repos\\obj\\",
+      "projectPath": "C:\\Users\\Shay\\Documents\\QUT Drive\\CAB301_Assignment_3\\Assignment3.csproj",
+      "packagesPath": "C:\\Users\\Shay\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Shay\\Documents\\QUT Drive\\CAB301_Assignment_3\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ddyas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Shay\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -60,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }

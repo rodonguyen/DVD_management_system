@@ -161,4 +161,36 @@ public class StaffFunctions
         
 
     }
+
+    //pre-condition: 
+    public void PrintBorrowersofMovie(IMovieCollection movieCollection) {
+        //Checks if the movie (IMovie) exists in the list?
+        //If number of total copies == number of available copies
+        //Return "no one is currently borriwing this movie"
+        //else
+        //
+        //print the list of borrowers of that movie
+        //
+        //return to the main menu
+        Console.WriteLine("Please enter a movie to view members borrowing the movie");
+        string movie = Console.ReadLine();
+        IMovie result = movieCollection.Search(movie); //Searches for the movie
+        if (result == null)
+        {
+            Console.WriteLine("Movie does not exist");
+        }
+        else
+        {
+            if (result.AvailableCopies == result.TotalCopies) //Available copies == total copies meaning no one has borrowed the movie
+            {
+                Console.WriteLine("No one is borrowing this movie currently");
+            }
+            else
+            {
+                Console.WriteLine("List of people currently borrowing " + result + ": \n");
+                Console.WriteLine(result.Borrowers.ToString());
+            }
+        }
+
+    }
 }
