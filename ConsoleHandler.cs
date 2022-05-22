@@ -9,7 +9,7 @@ class ConsoleHandler
         Console.Clear();
         DisplayMainMenu();
         String choice = Console.ReadLine();
-        bool isValidChoice = CheckChoice(choice, 2);
+        bool isValidChoice = CheckChoice(choice, 0, 2);
 
         while (!isValidChoice)
         {
@@ -22,7 +22,7 @@ class ConsoleHandler
             DisplayMainMenu();
             //Console.CursorLeft -= 25;  // Move cursor back, near the arrow
             choice = Console.ReadLine();
-            isValidChoice = CheckChoice(choice, 2);
+            isValidChoice = CheckChoice(choice, 0, 2);
         }
 
         // Handle the valid choice
@@ -84,27 +84,106 @@ class ConsoleHandler
             //isGoingBackToMainMenu = username == "0" || password == "0";
             //if (isGoingBackToMainMenu) MainMenu();
         }
+        Console.Clear();
+        DisplayStaffMenu();
         StaffMenu();
     }
+    /*
+
+    public static MovieGenre SelectMovieGenre()
+    {
+        DisplaySelectMovieGenre();
+        Console.Write("\n\n  Enter your choice (1/2/3/4/5) => ");
+
+        string genre = Console.ReadLine();
+        bool isGenreValid = CheckChoice(genre, 1, 5);
+
+        while (!isGenreValid)
+        {
+            
+            Console.WriteLine("---------------------------------------------------------------------------");
+            Console.WriteLine($"  Invalid choice ({genre}): Your choice must be an integer from 1 to 5!");
+            Console.WriteLine("---------------------------------------------------------------------------\n");
+
+            Console.Write("\n Enter your choice (1/2/3/4/5) => ");
+            genre = Console.ReadLine();
+            isGenreValid = CheckChoice(genre, 1, 5);
+        }
+
+
+        return (MovieGenre)Convert.ToInt32(genre);
+    }
+
+    public static MovieClassification SelectMovieClassification()
+    {
+        DisplaySelectMovieClassification();
+        Console.Write("\n\n  Enter your choice (1/2/3/4) => ");
+
+        string classification = Console.ReadLine();
+        bool isGenreValid = CheckChoice(classification, 1, 4);
+
+        while (!isGenreValid)
+        {
+            
+            Console.WriteLine("---------------------------------------------------------------------------");
+            Console.WriteLine($"  Invalid choice ({classification}): Your choice must be an integer from 1 to 4!");
+            Console.WriteLine("---------------------------------------------------------------------------\n");
+
+            Console.Write("\n Enter your choice (1/2/3/4) => ");
+            classification = Console.ReadLine();
+            isGenreValid = CheckChoice(classification, 1, 4);
+        }
+
+        return (MovieClassification)Convert.ToInt32(classification);
+    }
+
+
+
+    public static void DisplaySelectMovieGenre()
+    {
+
+        Console.WriteLine("\n Select the movie genre:  => ");
+        Console.WriteLine("  1. Action");
+        Console.WriteLine("  2. Comedy");
+        Console.WriteLine("  3. History");
+        Console.WriteLine("  4. Drama");
+        Console.WriteLine("  5. Western");
+        Console.WriteLine("=====================================================================");
+
+
+    }
+    public static void DisplaySelectMovieClassification()
+    {
+        Console.WriteLine("\n Select the movie classification:  => ");
+        Console.WriteLine("  1. G");
+        Console.WriteLine("  2. PG");
+        Console.WriteLine("  3. M");
+        Console.WriteLine("  4. M15Plus");
+        Console.WriteLine("=====================================================================");
+
+    }
+    */
+
 
     private static void StaffMenu()
     {
-        Console.Clear();
-        DisplayStaffMenu();
+        Console.Write("\n\n  Enter the staff menu action (1/2/3/4/5/6/0) => ");
 
         String choice = Console.ReadLine();
-        bool isValidChoice = CheckChoice(choice, 6);
+        bool isValidChoice = CheckChoice(choice, 0, 6);
 
         while (!isValidChoice) {
-            Console.Clear();
+
             Console.WriteLine("---------------------------------------------------------------------------");
             Console.WriteLine($"  Invalid choice ({choice}): Your choice must be an integer from 0 to 6!");
             Console.WriteLine("---------------------------------------------------------------------------\n");
 
-            DisplayStaffMenu();
+            Console.Write("\n\n  Enter the staff menu action (1/2/3/4/5/6/0) => ");
             choice = Console.ReadLine();
-            isValidChoice = CheckChoice(choice, 6);
+            isValidChoice = CheckChoice(choice, 0, 6);
         }
+
+        StaffFunctions staffFunctions = new StaffFunctions();
 
         // Handle the valid choice
         switch (int.Parse(choice)) {
@@ -112,21 +191,32 @@ class ConsoleHandler
                 MainMenu();
                 break;
             case 1:
-                Console.WriteLine("To be implemented...");
+                // Add new DVDs of a movie to the system.
+                staffFunctions.AddNewDvD(Program.movieCollection);
+                StaffMenu();
                 break;
             case 2:
-                Console.WriteLine("To be implemented...");
+                //Remove DVDs of a movie from the system.
+                staffFunctions.DeleteDvD(Program.movieCollection);
+                StaffMenu();
                 break;
             case 3:
-                Console.WriteLine("To be implemented...");
+                //Register a new member with the system.
+                staffFunctions.AddMember(Program.memberCollection);
+                StaffMenu();
                 break;
             case 4:
-                Console.WriteLine("To be implemented...");
+                //Remove a registered member from the system.
+                staffFunctions.RemoveMember(Program.memberCollection);
+                StaffMenu();
                 break;
             case 5:
-                Console.WriteLine("To be implemented...");
+                //Display a member’s contact phone number, given the member’s full name.
+                staffFunctions.DisplayMemberPhoneNumber(Program.memberCollection);
+                StaffMenu();
                 break;
             case 6:
+                //Display a member’s contact phone number, given the member’s full name.
                 Console.WriteLine("To be implemented...");
                 break;
         }
@@ -172,21 +262,23 @@ class ConsoleHandler
     private static void MemberMenu()
     {
         Console.Clear();
-        DisplayMemberMenu();
+
 
         String choice = Console.ReadLine();
-        bool isValidChoice = CheckChoice(choice, 6);
+        bool isValidChoice = CheckChoice(choice, 0, 6);
 
         while (!isValidChoice) {
-            Console.Clear();
+            
             Console.WriteLine("---------------------------------------------------------------------------");
             Console.WriteLine($"  Invalid choice ({choice}): Your choice must be an integer from 0 to 6!");
             Console.WriteLine("---------------------------------------------------------------------------\n");
 
-            DisplayMemberMenu();
+            
             choice = Console.ReadLine();
-            isValidChoice = CheckChoice(choice, 6);
+            isValidChoice = CheckChoice(choice, 0, 6);
         }
+
+        
 
         // Handle the valid choice
         switch (int.Parse(choice)) {
@@ -213,6 +305,7 @@ class ConsoleHandler
                 break;
         }
     }
+    
     private static void DisplayStaffMenu()
     {
         Console.WriteLine("============================ Staff Menu =============================");
@@ -224,8 +317,11 @@ class ConsoleHandler
         Console.WriteLine("  6. Display all members who are currently renting a particular movie");
         Console.WriteLine("  0. Return to the main menu");
         Console.WriteLine("=====================================================================");
-        Console.Write("\n\n  Enter your choice (1/2/3/4/5/6/0) => ");
+        
     }
+
+
+
 
     private static void DisplayMemberMenu()
     {
@@ -242,11 +338,11 @@ class ConsoleHandler
     }
 
 
-    private static bool CheckChoice(String inputString, int maxValue)
+    private static bool CheckChoice(String inputString, int minValue, int maxValue)
     {
         try {
             int input = int.Parse(inputString);
-            bool isValidChoice = input <= maxValue && input >= 0;
+            bool isValidChoice = input <= maxValue && input >= minValue;
             return isValidChoice;
         } catch {
             return false;

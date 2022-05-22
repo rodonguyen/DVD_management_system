@@ -15,6 +15,7 @@ class Program
         memberCollection.Add(new Member("E", "A", "0444455555", "1111"));
         memberCollection.Add(new Member("E", "E", "0444455555", "1111"));
         memberCollection.Add(new Member("F", "F", "0444455555", "2222"));
+        
 
         ConsoleHandler.MainMenu();
     }

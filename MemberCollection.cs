@@ -62,27 +62,36 @@ class MemberCollection : IMemberCollection
     // No duplicate will be added into this the member collection
     public void Add(IMember member)
     {
-        if (!IsFull() && !Search(member))     {
-            System.Console.WriteLine($"Adding member {member.ToString()}...");
-            for (int i = 0; i < count + 1; i++)
-            {
-                // Reach the position after the final member OR no member exists so assign to the first element
-                if (count == i)
-                    members[i] = (Member)member;
-                // If member should be front of members[i] (-1),
-                // move all elements to the back by 1, starting from the tail
-                else if (member.CompareTo(members[i]) == -1)
+        if (!IsFull())     
+        {
+            if (!Search(member)) {
+                System.Console.WriteLine($"Adding member {member.ToString()}...");
+                for (int i = 0; i < count + 1; i++)
                 {
-                    for (int j = count-1; j > i-1; j--)
-                        members[j + 1] = members[j];
-                    members[i] = (Member)member;
-                    break;
+                    // Reach the position after the final member OR no member exists so assign to the first element
+                    if (count == i)
+                        members[i] = (Member)member;
+                    // If member should be front of members[i] (-1),
+                    // move all elements to the back by 1, starting from the tail
+                    else if (member.CompareTo(members[i]) == -1)
+                    {
+                        for (int j = count - 1; j > i - 1; j--)
+                            members[j + 1] = members[j];
+                        members[i] = (Member)member;
+                        break;
+                    }
                 }
+                count++;
+                Console.Write($" Member {member.ToString()} was added to the system");
             }
-            count++;
+            else
+            {
+                Console.WriteLine($"Member {member.ToString()} already exists in the system");
+            }
+            
         }
         else
-            System.Console.WriteLine("MemberCollection is Full or member to be added is duplicate: {0}.", member.ToString());
+            System.Console.WriteLine("Maximum number of member was achieved. No more members can be added.");
     }
 
     // Remove a given member out of this member collection
@@ -104,9 +113,11 @@ class MemberCollection : IMemberCollection
             
             members[count - 1] = null;
             count--;
+            
+            Console.Write($" Member {aMember.ToString()} was removed from the system");
 
         } else
-            System.Console.WriteLine("member to be deleted is not found in this MemberCollection: {0}", aMember.ToString());
+            System.Console.WriteLine("Member {0} does not exist in the system: ", aMember.ToString());
 
     }
 
@@ -129,7 +140,7 @@ class MemberCollection : IMemberCollection
             else
                 max = mid - 1;
         }
-        System.Console.WriteLine("member {0} is not found in this MemberCollection Object.", member.ToString());
+        //System.Console.WriteLine("member {0} is not found in this MemberCollection Object.", member.ToString());
         return false;
     }
 

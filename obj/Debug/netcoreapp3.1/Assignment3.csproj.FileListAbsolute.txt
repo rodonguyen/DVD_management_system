@@ -12,3 +12,17 @@ D:\QUT\Laptop_Documents\cab301_a3\bin\Debug\netcoreapp3.1\Assignment3.pdb
 D:\QUT\Laptop_Documents\cab301_a3\obj\Debug\netcoreapp3.1\Assignment3.dll
 D:\QUT\Laptop_Documents\cab301_a3\obj\Debug\netcoreapp3.1\Assignment3.pdb
 D:\QUT\Laptop_Documents\cab301_a3\obj\Debug\netcoreapp3.1\Assignment3.genruntimeconfig.cache
+C:\Users\ddyas\Documents\Cab301\Asssigment_3_repos\bin\Debug\netcoreapp3.1\Assignment3.exe
+C:\Users\ddyas\Documents\Cab301\Asssigment_3_repos\bin\Debug\netcoreapp3.1\Assignment3.deps.json
+C:\Users\ddyas\Documents\Cab301\Asssigment_3_repos\bin\Debug\netcoreapp3.1\Assignment3.runtimeconfig.json
+C:\Users\ddyas\Documents\Cab301\Asssigment_3_repos\bin\Debug\netcoreapp3.1\Assignment3.runtimeconfig.dev.json
+C:\Users\ddyas\Documents\Cab301\Asssigment_3_repos\bin\Debug\netcoreapp3.1\Assignment3.dll
+C:\Users\ddyas\Documents\Cab301\Asssigment_3_repos\bin\Debug\netcoreapp3.1\Assignment3.pdb
+C:\Users\ddyas\Documents\Cab301\Asssigment_3_repos\obj\Debug\netcoreapp3.1\Assignment3.csproj.AssemblyReference.cache
+C:\Users\ddyas\Documents\Cab301\Asssigment_3_repos\obj\Debug\netcoreapp3.1\Assignment3.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ddyas\Documents\Cab301\Asssigment_3_repos\obj\Debug\netcoreapp3.1\Assignment3.AssemblyInfoInputs.cache
+C:\Users\ddyas\Documents\Cab301\Asssigment_3_repos\obj\Debug\netcoreapp3.1\Assignment3.AssemblyInfo.cs
+C:\Users\ddyas\Documents\Cab301\Asssigment_3_repos\obj\Debug\netcoreapp3.1\Assignment3.csproj.CoreCompileInputs.cache
+C:\Users\ddyas\Documents\Cab301\Asssigment_3_repos\obj\Debug\netcoreapp3.1\Assignment3.dll
+C:\Users\ddyas\Documents\Cab301\Asssigment_3_repos\obj\Debug\netcoreapp3.1\Assignment3.pdb
+C:\Users\ddyas\Documents\Cab301\Asssigment_3_repos\obj\Debug\netcoreapp3.1\Assignment3.genruntimeconfig.cache
