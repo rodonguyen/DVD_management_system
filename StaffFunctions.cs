@@ -5,10 +5,6 @@ using System.Text;
 public class StaffFunctions
 {
 
-    
-
-    
-    
 
     // Add new DvD movie to the system
     // Pre-condition: NIL
