@@ -14,7 +14,6 @@ class ConsoleHandler
         while (!isValidChoice)
         {
             Console.Clear();
-
             Console.WriteLine( "-----------------------------------------------------------------------");
             Console.WriteLine($"  Invalid choice ({choice}): Your choice must be an integer from 0 to 2!");
             Console.WriteLine( "-----------------------------------------------------------------------\n");
@@ -301,7 +300,8 @@ class ConsoleHandler
                 MemberMenu(member);
                 break;
             case 6:
-                
+                // my function
+                MemberMenu(member);
                 break;
         }
 
@@ -337,7 +337,6 @@ class ConsoleHandler
         Console.WriteLine("  0. Return to the main menu");
         Console.WriteLine("=======================================================================");
         Console.Write("\n  Enter your choice (1/2/3/4/5/6/0) => ");
-
     }
 
 
