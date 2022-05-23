@@ -257,13 +257,18 @@ class ConsoleHandler
             }
         }
 
-        MemberMenu();
+        Console.Clear();
+        DisplayMemberMenu();
+        MemberMenu(memberFound);
+
     }
 
-    private static void MemberMenu()
+    private static void MemberMenu(IMember member)
     {
-        Console.Clear();
 
+        Console.Write("\n\n  Enter your choice (1/2/3/4/5/6/0) => ");
+
+        
 
         String choice = Console.ReadLine();
         bool isValidChoice = CheckChoice(choice, 0, 6);
@@ -287,24 +292,30 @@ class ConsoleHandler
                 MainMenu();
                 break;
             case 1:
-                Console.WriteLine("To be implemented...");
+                MemberFunctions.listOfMovies(Program.movieCollection);
+                MemberMenu(member);
                 break;
             case 2:
-                Console.WriteLine("To be implemented...");
+                MemberFunctions.displayMovieInformation(Program.movieCollection);
+                MemberMenu(member);
                 break;
             case 3:
-                Console.WriteLine("To be implemented...");
+                MemberFunctions.borrowAMovie(Program.movieCollection, member);
+                MemberMenu(member);
                 break;
             case 4:
-                Console.WriteLine("To be implemented...");
+                MemberFunctions.returnAMovie(Program.movieCollection, member);
+                MemberMenu(member);
                 break;
             case 5:
-                Console.WriteLine("To be implemented...");
+                //MemberFunctions.moviesCurrentlyBorrowing();
                 break;
             case 6:
-                Console.WriteLine("To be implemented...");
+                
                 break;
         }
+
+        
     }
     
     private static void DisplayStaffMenu()
@@ -335,7 +346,7 @@ class ConsoleHandler
         Console.WriteLine("  6. Display the top 3 movies rented by the members");
         Console.WriteLine("  0. Return to the main menu");
         Console.WriteLine("=======================================================================");
-        Console.Write("\n\n  Enter your choice (1/2/3/4/5/6/0) => ");
+        
     }
 
 

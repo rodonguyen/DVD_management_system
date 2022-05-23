@@ -4,7 +4,7 @@ using System.Text;
 
 class MemberFunctions
 {
-    public void listOfMovies(IMovieCollection movieCollection) {
+    public static void listOfMovies(IMovieCollection movieCollection) {
         //What happens when the movie collection is empty when calling ToArray();
         IMovie[] movieList = movieCollection.ToArray();
         //Is printing the array a better solution than printing the tree
@@ -25,7 +25,7 @@ class MemberFunctions
             //print the list of movies in alphabetical order
     }
 
-    public void displayMovieInformation(IMovieCollection movieCollection)
+    public static void displayMovieInformation(IMovieCollection movieCollection)
     {
         //Display information about a movie
         Console.WriteLine("Please enter a movie name:");
@@ -40,7 +40,7 @@ class MemberFunctions
         Console.WriteLine(searchedMovie.ToString());
     }
 
-    public void borrowAMovie(IMovieCollection movieCollection, IMember currentUser)
+    public static void borrowAMovie(IMovieCollection movieCollection, IMember currentUser)
     {
 
         //How does it know which user to add??
@@ -60,7 +60,7 @@ class MemberFunctions
 
     }
 
-    public void returnAMovie(IMovieCollection movieCollection, IMember currentUser) {
+    public static void returnAMovie(IMovieCollection movieCollection, IMember currentUser) {
         Console.WriteLine("What movie would you like to return?:");
 
         //Looking for the movie
@@ -72,5 +72,13 @@ class MemberFunctions
         searchedMovie.RemoveBorrower(currentUser);
 
         Console.WriteLine("The movie is successfully returned, have a nice day");
+    }
+
+    public void moviesCurrentlyBorrowing() { 
+        //Need to do 
+    }
+
+    public void topThreeMovies() { 
+        //Need to do 
     }
 }

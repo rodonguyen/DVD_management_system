@@ -15,7 +15,14 @@ class Program
         memberCollection.Add(new Member("E", "A", "0444455555", "1111"));
         memberCollection.Add(new Member("E", "E", "0444455555", "1111"));
         memberCollection.Add(new Member("F", "F", "0444455555", "2222"));
-        
+        memberCollection.Add(new Member("Anthony", "Nguyen", "0450456788", "1234"));
+
+
+
+        movieCollection.Insert(new Movie("Batman", MovieGenre.Action, MovieClassification.M15Plus, 180, 10));
+        movieCollection.Insert(new Movie("Barbie", MovieGenre.Western, MovieClassification.G, 90, 10));
+        movieCollection.Insert(new Movie("Everything Everywhere All at Once", MovieGenre.Western, MovieClassification.G, 240, 10));
+
 
         ConsoleHandler.MainMenu();
     }
