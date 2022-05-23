@@ -45,13 +45,16 @@ class ConsoleHandler
 
     private static void DisplayMainMenu()
     {
-        Console.WriteLine("Welcome to the Community Library Movie DVD Management System");
-        Console.WriteLine("======================== MAIN MENU =========================");
-        Console.WriteLine("  1. Staff Login");
-        Console.WriteLine("  2. Member Login");
-        Console.WriteLine("  0. Exit");
-        Console.WriteLine("============================================================");
-        Console.Write  ("\n  Enter your choice (1/2/0) => ");
+        Console.WriteLine("------------------------------------------------------------------");
+        Console.WriteLine("|  Welcome to the Community Library Movie DVD Management System  |");
+        Console.WriteLine("------------------------------------------------------------------");
+        Console.WriteLine();
+        Console.WriteLine("=========================== MAIN MENU ============================");
+        Console.WriteLine("    1. Staff Login");
+        Console.WriteLine("    2. Member Login");
+        Console.WriteLine("    0. Exit");
+        Console.WriteLine("==================================================================");
+        Console.Write  ("\n    Enter your choice (1/2/0) => ");
     }
 
     private static void StaffLogin()
@@ -80,8 +83,7 @@ class ConsoleHandler
             isValidUsername = username == "staff";
             isValidPassword = password == "today123";
         }
-        Console.Clear();
-        DisplayStaffMenu();
+
         StaffMenu();
     }
 
@@ -163,17 +165,18 @@ class ConsoleHandler
 
     private static void StaffMenu()
     {
-        Console.Write("\n\n  Enter the staff menu action (1/2/3/4/5/6/0) => ");
+        Console.Clear();
+        DisplayStaffMenu();
 
         String choice = Console.ReadLine();
         bool isValidChoice = CheckChoice(choice, 0, 6);
 
         while (!isValidChoice) {
-
+            Console.Clear();
             Console.WriteLine("---------------------------------------------------------------------------");
             Console.WriteLine($"  Invalid choice ({choice}): Your choice must be an integer from 0 to 6!");
             Console.WriteLine("---------------------------------------------------------------------------\n");
-
+            DisplayStaffMenu();
             Console.Write("\n\n  Enter the staff menu action (1/2/3/4/5/6/0) => ");
             choice = Console.ReadLine();
             isValidChoice = CheckChoice(choice, 0, 6);
@@ -240,7 +243,6 @@ class ConsoleHandler
             Console.WriteLine("----------------------------------------------------------------------");
             Console.WriteLine("|       Incorrect login details! Please try again.                   |");
             Console.WriteLine("----------------------------------------------------------------------\n");
-
             Console.WriteLine("============================ Member Login =============================");
             Console.WriteLine("  Enter your member's first name, last name and password               ");
             Console.Write("    First name: "); firstname = Console.ReadLine();
@@ -252,36 +254,27 @@ class ConsoleHandler
                 isValidMember = memberFound.Pin == password;
             }
         }
-
-        Console.Clear();
-        DisplayMemberMenu();
         MemberMenu(memberFound);
-
     }
 
     private static void MemberMenu(IMember member)
     {
-
-        Console.Write("\n\n  Enter your choice (1/2/3/4/5/6/0) => ");
-
-        
-
+        Console.Clear();
+        DisplayMemberMenu();
         String choice = Console.ReadLine();
         bool isValidChoice = CheckChoice(choice, 0, 6);
 
         while (!isValidChoice) {
-            
+            Console.Clear();    
             Console.WriteLine("---------------------------------------------------------------------------");
             Console.WriteLine($"  Invalid choice ({choice}): Your choice must be an integer from 0 to 6!");
             Console.WriteLine("---------------------------------------------------------------------------\n");
+            DisplayMemberMenu();
 
-            
             choice = Console.ReadLine();
             isValidChoice = CheckChoice(choice, 0, 6);
         }
-
         
-
         // Handle the valid choice
         switch (int.Parse(choice)) {
             case 0:
@@ -304,7 +297,8 @@ class ConsoleHandler
                 MemberMenu(member);
                 break;
             case 5:
-                //MemberFunctions.moviesCurrentlyBorrowing();
+                MemberFunctions.displayBorrowingMovies(member);
+                MemberMenu(member);
                 break;
             case 6:
                 
@@ -325,7 +319,7 @@ class ConsoleHandler
         Console.WriteLine("  6. Display all members who are currently renting a particular movie");
         Console.WriteLine("  0. Return to the main menu");
         Console.WriteLine("=====================================================================");
-        
+        Console.Write("\n  Enter your choice (1/2/3/4/5/6/0) => ");
     }
 
 
@@ -342,7 +336,8 @@ class ConsoleHandler
         Console.WriteLine("  6. Display the top 3 movies rented by the members");
         Console.WriteLine("  0. Return to the main menu");
         Console.WriteLine("=======================================================================");
-        
+        Console.Write("\n  Enter your choice (1/2/3/4/5/6/0) => ");
+
     }
 
 

@@ -74,8 +74,23 @@ class MemberFunctions
         Console.WriteLine("The movie is successfully returned, have a nice day");
     }
 
-    public void moviesCurrentlyBorrowing() { 
-        //Need to do 
+    public static void displayBorrowingMovies(IMember member) {
+        // Finding all borrowing movies
+        MovieCollection borrowingMovies = new MovieCollection();
+        foreach (Movie movie in Program.movieCollection.ToArray())
+            if (movie.Borrowers.Search(member))
+                borrowingMovies.Insert(movie);
+
+        // Displaying borrowing movies
+        Console.Clear();
+        Console.WriteLine("================================================");
+
+        Console.WriteLine("  Your borrowing movies:");
+        foreach (Movie movie in borrowingMovies.ToArray())
+            Console.WriteLine("  "+movie.ToString());
+        Console.WriteLine("================================================");
+        Console.Write("\nPress enter to return to main menu...");
+        Console.Read();
     }
 
     public void topThreeMovies() { 

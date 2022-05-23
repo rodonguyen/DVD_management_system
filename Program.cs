@@ -12,17 +12,22 @@ class Program
         memberCollection.Add(new Member("D", "D", "0444455555", "1111"));
         memberCollection.Add(new Member("C", "C", "0444455555", "1111"));
         memberCollection.Add(new Member("A", "A", "0444455555", "1111"));
+        memberCollection.Add(new Member("a", "a", "0444455555", "1111"));
         memberCollection.Add(new Member("E", "A", "0444455555", "1111"));
         memberCollection.Add(new Member("E", "E", "0444455555", "1111"));
         memberCollection.Add(new Member("F", "F", "0444455555", "2222"));
         memberCollection.Add(new Member("Anthony", "Nguyen", "0450456788", "1234"));
 
-
-
         movieCollection.Insert(new Movie("Batman", MovieGenre.Action, MovieClassification.M15Plus, 180, 10));
         movieCollection.Insert(new Movie("Barbie", MovieGenre.Western, MovieClassification.G, 90, 10));
         movieCollection.Insert(new Movie("Everything Everywhere All at Once", MovieGenre.Western, MovieClassification.G, 240, 10));
+        movieCollection.Insert(new Movie("Movie1", MovieGenre.Western, MovieClassification.G, 101, 1));
+        movieCollection.Insert(new Movie("Movie2", MovieGenre.Action, MovieClassification.G, 102, 2));
+        movieCollection.Insert(new Movie("Movie3", MovieGenre.History, MovieClassification.PG, 102, 3));
 
+        movieCollection.Search("Movie1").AddBorrower(new Member("a", "a"));
+        movieCollection.Search("Movie2").AddBorrower(new Member("a", "a"));
+        movieCollection.Search("Movie3").AddBorrower(new Member("A", "A"));
 
         ConsoleHandler.MainMenu();
     }
@@ -47,10 +52,10 @@ class Program
         int numDashAfter = 75 - length1;
         string dashAfter = string.Concat(Enumerable.Repeat("-", numDashAfter));
         string spaceAfter = string.Concat(Enumerable.Repeat(" ", (20+length1 + numDashAfter) - 4 - length2));
-        System.Console.WriteLine("\n");
-        System.Console.WriteLine($"----------  Test: {testname}  {dashAfter}");
-        System.Console.WriteLine($"| {description} {spaceAfter}|");
-        System.Console.WriteLine(string.Concat(Enumerable.Repeat("-", 20+ length1 + numDashAfter)));
+        Console.WriteLine("\n");
+        Console.WriteLine($"----------  Test: {testname}  {dashAfter}");
+        Console.WriteLine($"| {description} {spaceAfter}|");
+        Console.WriteLine(string.Concat(Enumerable.Repeat("-", 20+ length1 + numDashAfter)));
     }
 
     static void MyTesting()
@@ -141,7 +146,7 @@ class Program
         //  TESTING IsEmpty
         TestPrompt("isEmpty", "Should print True");
         MovieCollection movieCollection = new MovieCollection();
-        System.Console.WriteLine(movieCollection.IsEmpty());
+        Console.WriteLine(movieCollection.IsEmpty());
 
         TestPrompt("isEmpty", "Should print False");
         IMovie movie1 = new Movie("KKK", MovieGenre.Action, MovieClassification.G, 150, 2);
@@ -149,101 +154,101 @@ class Program
         IMovie movie3 = new Movie("AAA", MovieGenre.Drama, MovieClassification.G, 160, 3);
         IMovie movie4 = new Movie("OOO", MovieGenre.Western, MovieClassification.G, 170, 3);
         movieCollection.Insert(movie1);
-        System.Console.WriteLine(movieCollection.IsEmpty());
+        Console.WriteLine(movieCollection.IsEmpty());
 
         
         //  TESTING CompareTo
         TestPrompt("CompareTo", "Should print 0, 1, -1");
-        System.Console.WriteLine(movie1.CompareTo(movie2));
-        System.Console.WriteLine(movie1.CompareTo(movie3));
-        System.Console.WriteLine(movie1.CompareTo(movie4));
+        Console.WriteLine(movie1.CompareTo(movie2));
+        Console.WriteLine(movie1.CompareTo(movie3));
+        Console.WriteLine(movie1.CompareTo(movie4));
 
 
         //  TESTING Insert
         TestPrompt("Insert", "Should not be able to insert 1st and 2nd movie");
-        System.Console.WriteLine(movieCollection.Insert(movie1));     // Duplicate title
-        System.Console.WriteLine(movieCollection.Insert(movie2));     // Duplicate title
-        System.Console.WriteLine();
-        System.Console.WriteLine(movieCollection.Insert(movie3));
-        System.Console.WriteLine(movieCollection.Insert(movie4));
+        Console.WriteLine(movieCollection.Insert(movie1));     // Duplicate title
+        Console.WriteLine(movieCollection.Insert(movie2));     // Duplicate title
+        Console.WriteLine();
+        Console.WriteLine(movieCollection.Insert(movie3));
+        Console.WriteLine(movieCollection.Insert(movie4));
 
 
         TestPrompt("Insert", "Should print 3 - the number of movies in collection");
-        System.Console.WriteLine(movieCollection.Number);
+        Console.WriteLine(movieCollection.Number);
 
 
         //  TESTING ToArray()
         TestPrompt("ToArray, ToString", "Should print 3 movies' details");
         IMovie[] movies = movieCollection.ToArray();
         foreach (Movie movie in movies)   {
-            System.Console.WriteLine(movie.ToString());
+            Console.WriteLine(movie.ToString());
         }
 
 
         //  TESTING IsEmpty and other properties
         TestPrompt("Clear", "Should print True, 0");
         movieCollection.Clear();
-        System.Console.WriteLine($"{movieCollection.IsEmpty()}, {movieCollection.Number}");
+        Console.WriteLine($"{movieCollection.IsEmpty()}, {movieCollection.Number}");
 
 
         TestPrompt("Movie check", "Should have the following numbers: 0, 2, 2");
-        System.Console.WriteLine($"Number of borrowings: {movie1.NoBorrowings}");
-        System.Console.WriteLine($"Total copies: {movie1.TotalCopies}");
-        System.Console.WriteLine($"Available copiess: {movie1.AvailableCopies}");
+        Console.WriteLine($"Number of borrowings: {movie1.NoBorrowings}");
+        Console.WriteLine($"Total copies: {movie1.TotalCopies}");
+        Console.WriteLine($"Available copiess: {movie1.AvailableCopies}");
 
 
         //  TESTING AddBorrower
         TestPrompt("AddBorrower", "Should have the followings: True, 1, 2, 1");
-        System.Console.WriteLine(movie1.AddBorrower(new Member("A", "A")));
-        System.Console.WriteLine($"Number of borrowings: {movie1.NoBorrowings}");
-        System.Console.WriteLine($"Total copies: {movie1.TotalCopies}");
-        System.Console.WriteLine($"Available copiess: {movie1.AvailableCopies}");
+        Console.WriteLine(movie1.AddBorrower(new Member("A", "A")));
+        Console.WriteLine($"Number of borrowings: {movie1.NoBorrowings}");
+        Console.WriteLine($"Total copies: {movie1.TotalCopies}");
+        Console.WriteLine($"Available copiess: {movie1.AvailableCopies}");
 
         TestPrompt("AddBorrower", "Should have the followings: True, 2, 2, 0");
-        System.Console.WriteLine(movie1.AddBorrower(new Member("D", "D")));
-        System.Console.WriteLine($"Number of borrowings: {movie1.NoBorrowings}");
-        System.Console.WriteLine($"Total copies: {movie1.TotalCopies}");
-        System.Console.WriteLine($"Available copiess: {movie1.AvailableCopies}");
+        Console.WriteLine(movie1.AddBorrower(new Member("D", "D")));
+        Console.WriteLine($"Number of borrowings: {movie1.NoBorrowings}");
+        Console.WriteLine($"Total copies: {movie1.TotalCopies}");
+        Console.WriteLine($"Available copiess: {movie1.AvailableCopies}");
 
         TestPrompt("AddBorrower - no more copies", "Should have the followings: False, 2, 2, 0");
-        System.Console.WriteLine(movie1.AddBorrower(new Member("C", "C")));
-        System.Console.WriteLine($"Number of borrowings: {movie1.NoBorrowings}");
-        System.Console.WriteLine($"Total copies: {movie1.TotalCopies}");
-        System.Console.WriteLine($"Available copiess: {movie1.AvailableCopies}");
+        Console.WriteLine(movie1.AddBorrower(new Member("C", "C")));
+        Console.WriteLine($"Number of borrowings: {movie1.NoBorrowings}");
+        Console.WriteLine($"Total copies: {movie1.TotalCopies}");
+        Console.WriteLine($"Available copiess: {movie1.AvailableCopies}");
 
         TestPrompt("AddBorrower - same member", "Should print the followings: True False False, 1, 3, 2");
-        System.Console.WriteLine(movie3.AddBorrower(new Member("D", "D")));
-        System.Console.WriteLine(movie3.AddBorrower(new Member("D", "D")));
-        System.Console.WriteLine(movie3.AddBorrower(new Member("D", "D")));
-        System.Console.WriteLine($"Number of borrowings: {movie3.NoBorrowings}");
-        System.Console.WriteLine($"Total copies: {movie3.TotalCopies}");
-        System.Console.WriteLine($"Available copiess: {movie3.AvailableCopies}");
+        Console.WriteLine(movie3.AddBorrower(new Member("D", "D")));
+        Console.WriteLine(movie3.AddBorrower(new Member("D", "D")));
+        Console.WriteLine(movie3.AddBorrower(new Member("D", "D")));
+        Console.WriteLine($"Number of borrowings: {movie3.NoBorrowings}");
+        Console.WriteLine($"Total copies: {movie3.TotalCopies}");
+        Console.WriteLine($"Available copiess: {movie3.AvailableCopies}");
 
 
         //  TESTING RemoveBorrower
         TestPrompt("RemoveBorrower - unexisted borrower", "Should print False x3");
-        System.Console.WriteLine(movie2.RemoveBorrower(new Member("C", "C")));
-        System.Console.WriteLine(movie1.RemoveBorrower(new Member("C", "C")));
-        System.Console.WriteLine(movie1.RemoveBorrower(new Member("D", "A")));
+        Console.WriteLine(movie2.RemoveBorrower(new Member("C", "C")));
+        Console.WriteLine(movie1.RemoveBorrower(new Member("C", "C")));
+        Console.WriteLine(movie1.RemoveBorrower(new Member("D", "A")));
 
         TestPrompt("RemoveBorrower", "Should print True");
-        System.Console.WriteLine(movie1.RemoveBorrower(new Member("A", "A")));
-        System.Console.WriteLine($"Number of borrowings: {movie1.NoBorrowings}");
-        System.Console.WriteLine($"Total copies: {movie1.TotalCopies}");
-        System.Console.WriteLine($"Available copiess: {movie1.AvailableCopies}");
+        Console.WriteLine(movie1.RemoveBorrower(new Member("A", "A")));
+        Console.WriteLine($"Number of borrowings: {movie1.NoBorrowings}");
+        Console.WriteLine($"Total copies: {movie1.TotalCopies}");
+        Console.WriteLine($"Available copiess: {movie1.AvailableCopies}");
 
         TestPrompt("RemoveBorrower", "Should print False");
-        System.Console.WriteLine(movie1.RemoveBorrower(new Member("A", "A")));
-        System.Console.WriteLine($"Number of borrowings: {movie1.NoBorrowings}");
-        System.Console.WriteLine($"Total copies: {movie1.TotalCopies}");
-        System.Console.WriteLine($"Available copiess: {movie1.AvailableCopies}");
+        Console.WriteLine(movie1.RemoveBorrower(new Member("A", "A")));
+        Console.WriteLine($"Number of borrowings: {movie1.NoBorrowings}");
+        Console.WriteLine($"Total copies: {movie1.TotalCopies}");
+        Console.WriteLine($"Available copiess: {movie1.AvailableCopies}");
 
         TestPrompt("RemoveBorrower", "Should print the followings: True x2, 3, 2, 1");
-        System.Console.WriteLine(movie1.AddBorrower(new Member("E", "E")));
-        System.Console.WriteLine(movie1.RemoveBorrower(new Member("E", "E")));
-        System.Console.WriteLine($"Number of borrowings: {movie1.NoBorrowings}");
-        System.Console.WriteLine($"Total copies: {movie1.TotalCopies}");
-        System.Console.WriteLine($"Available copiess: {movie1.AvailableCopies}");
+        Console.WriteLine(movie1.AddBorrower(new Member("E", "E")));
+        Console.WriteLine(movie1.RemoveBorrower(new Member("E", "E")));
+        Console.WriteLine($"Number of borrowings: {movie1.NoBorrowings}");
+        Console.WriteLine($"Total copies: {movie1.TotalCopies}");
+        Console.WriteLine($"Available copiess: {movie1.AvailableCopies}");
 
         //  TESTING ToArray
         TestPrompt("ToArray", "Should print 8 movies details: ");
@@ -262,28 +267,28 @@ class Program
         movieCollection.Insert(movie8);
         movieCollection.Insert(movie9);
         foreach (Movie movie in movieCollection.ToArray())    {
-            System.Console.WriteLine(movie.ToString());
+            Console.WriteLine(movie.ToString());
         }
 
 
         //  TESTING Search (1)
         TestPrompt("Search", "Should print Foundx3, 3 other movies info.");
 
-        System.Console.WriteLine(movieCollection.Search(movie1));
-        System.Console.WriteLine(movieCollection.Search(movie2));
-        System.Console.WriteLine(movieCollection.Search(movie3));
+        Console.WriteLine(movieCollection.Search(movie1));
+        Console.WriteLine(movieCollection.Search(movie2));
+        Console.WriteLine(movieCollection.Search(movie3));
 
-        System.Console.WriteLine();
+        Console.WriteLine();
         IMovie movieResult;
         movieResult = movieCollection.Search("AAA");
-        System.Console.WriteLine(movieResult.Title);
+        Console.WriteLine(movieResult.Title);
         movieResult = movieCollection.Search("A82");
-        System.Console.WriteLine(movieResult.ToString());
+        Console.WriteLine(movieResult.ToString());
         movieResult = movieCollection.Search("OOO");
-        System.Console.WriteLine(movieResult.ToString());
+        Console.WriteLine(movieResult.ToString());
 
         movieResult = movieCollection.Search("XXXXX"); // Unexisted movie 
-        System.Console.WriteLine(movieResult == null);
+        Console.WriteLine(movieResult == null);
 
 
         TestPrompt("Delete", "Should print 5 movies details");
@@ -292,7 +297,7 @@ class Program
         Debug.Assert(movieCollection.Delete(movie5) == true);
         Debug.Assert(movieCollection.Number == 5);
         foreach (Movie movie in movieCollection.ToArray())    {
-            System.Console.WriteLine(movie.ToString());
+            Console.WriteLine(movie.ToString());
         }
 
 
@@ -302,7 +307,7 @@ class Program
         Debug.Assert(movieCollection.Number == 5);
         foreach (Movie movie in movieCollection.ToArray())
         {
-            System.Console.WriteLine(movie.ToString());
+            Console.WriteLine(movie.ToString());
         }
 
     }
