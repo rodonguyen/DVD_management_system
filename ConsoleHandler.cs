@@ -71,7 +71,6 @@ class ConsoleHandler
             Console.Clear();
             Console.WriteLine("----------------------------------------------------------------------");
             Console.WriteLine("|       Incorrect login details! Please try again.                   |");
-            //Console.WriteLine("|       Or enter 0 to either section to return to Main Menu.         |");
             Console.WriteLine("----------------------------------------------------------------------\n");
             Console.WriteLine("============================ Staff Login =============================");
             Console.WriteLine("  Enter staff's username and password");
@@ -80,16 +79,13 @@ class ConsoleHandler
 
             isValidUsername = username == "staff";
             isValidPassword = password == "today123";
-
-            //isGoingBackToMainMenu = username == "0" || password == "0";
-            //if (isGoingBackToMainMenu) MainMenu();
         }
         Console.Clear();
         DisplayStaffMenu();
         StaffMenu();
     }
-    /*
 
+    /*
     public static MovieGenre SelectMovieGenre()
     {
         DisplaySelectMovieGenre();
@@ -360,22 +356,4 @@ class ConsoleHandler
             return false;
         }
     }
-
-    //private static bool CheckInput(String inputString, int maxValue)
-    //{
-    //    int input;
-    //    try {
-    //        input = int.Parse(inputString);
-    //    }
-    //    catch (Exception e) { 
-    //        Console.WriteLine($"\nInvalid choice ({inputString}): Your choice must be from 0 to {maxValue} !!!");
-    //        return false;
-    //    }
-
-    //    bool isValidChoice = input <= maxValue  &&  input >= 0;
-    //    if (!isValidChoice)
-    //        Console.WriteLine($"\nInvalid choice ({inputString}): Your choice must be from 0 to {maxValue} !!!");
-
-    //    return isValidChoice;
-    //    }
 }

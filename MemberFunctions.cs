@@ -12,7 +12,7 @@ class MemberFunctions
         {
             if (movieList[0] == null) { 
                 Console.WriteLine("Movie list is currently empty, please check back later");
-                return; //Exit
+                return;
             }
             else
             {
@@ -46,7 +46,7 @@ class MemberFunctions
         //How does it know which user to add??
         //AddBorrow method to add borrower
 
-        Console.WriteLine("What movie would you like to borrow?:");
+        Console.WriteLine("What movie would you like to borrow?");
 
         //Looking for the movie
         string movie = Console.ReadLine();

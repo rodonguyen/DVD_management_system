@@ -1,3 +1,8 @@
+obj
+bin
+.vs
+
+
 # Prerequisites
 *.d
 
