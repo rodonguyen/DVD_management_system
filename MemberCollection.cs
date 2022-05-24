@@ -82,7 +82,6 @@ class MemberCollection : IMemberCollection
                     }
                 }
                 count++;
-                Console.Write($" Member {member.ToString()} was added to the system");
             }
             else
             {
@@ -114,7 +113,7 @@ class MemberCollection : IMemberCollection
             members[count - 1] = null;
             count--;
             
-            Console.Write($" Member {aMember.ToString()} was removed from the system");
+            Console.WriteLine($" Member {aMember.ToString()} was removed from the system");
 
         } else
             System.Console.WriteLine("Member {0} does not exist in the system: ", aMember.ToString());

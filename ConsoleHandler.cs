@@ -273,9 +273,10 @@ class ConsoleHandler
             choice = Console.ReadLine();
             isValidChoice = CheckChoice(choice, 0, 6);
         }
-        
+
         // Handle the valid choice
-        switch (int.Parse(choice)) {
+        switch (int.Parse(choice))
+        {
             case 0:
                 MainMenu();
                 break;
@@ -300,12 +301,10 @@ class ConsoleHandler
                 MemberMenu(member);
                 break;
             case 6:
-                // my function
+                MemberFunctions.displayTop3Movies();
                 MemberMenu(member);
                 break;
         }
-
-        
     }
     
     private static void DisplayStaffMenu()

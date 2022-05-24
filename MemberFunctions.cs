@@ -89,11 +89,56 @@ class MemberFunctions
         foreach (Movie movie in borrowingMovies.ToArray())
             Console.WriteLine("  "+movie.ToString());
         Console.WriteLine("================================================");
-        Console.Write("\nPress enter to return to main menu...");
+        Console.Write("\n  Press enter to return to main menu...");
         Console.Read();
     }
 
-    public void topThreeMovies() { 
-        //Need to do 
+    public static void displayTop3Movies() {
+        Movie[] top3Movies = new Movie[] { null, null, null };
+        int[] top3NoBorrowings = new int[]{0,0,0};
+
+        foreach (Movie movie in Program.movieCollection.ToArray()) {
+            int objNoBorrowing = movie.NoBorrowings;
+            // Check if 'movie' is more popular than the third one in the current top3 list
+            if (objNoBorrowing > top3NoBorrowings[2])
+            {
+                // Place the movie.Title and its NoBorrowings in the top3 list
+                // but maintain the number of borrowings' descending order
+                if (objNoBorrowing > top3NoBorrowings[0])
+                {
+                    top3NoBorrowings[2] = top3NoBorrowings[1];
+                    top3NoBorrowings[1] = top3NoBorrowings[0];
+                    top3NoBorrowings[0] = objNoBorrowing;
+                    top3Movies[2] = top3Movies[1];
+                    top3Movies[1] = top3Movies[0];
+                    top3Movies[0] = movie;
+                }
+                else if (objNoBorrowing <= top3NoBorrowings[0] && objNoBorrowing > top3NoBorrowings[1])
+                {
+                    top3NoBorrowings[2] = top3NoBorrowings[1];
+                    top3NoBorrowings[1] = objNoBorrowing;
+                    top3Movies[2] = top3Movies[1];
+                    top3Movies[1] = movie;
+                }
+                else if (objNoBorrowing <= top3NoBorrowings[1] && objNoBorrowing > top3NoBorrowings[2])
+                {
+                    top3NoBorrowings[2] = objNoBorrowing;
+                    top3Movies[2] = movie;
+                }
+            }
+        }
+
+        Console.Clear();
+        Console.WriteLine("================================================");
+        Console.WriteLine("  Top3 Most Borrowed Movies:");
+        for (int i = 0; i < 3; i++)     {
+            if (top3NoBorrowings[i] == 0)
+                Console.WriteLine($"    Top {i + 1} - Not available");
+            else
+                Console.WriteLine($"    Top {i + 1} - {top3Movies[i].Title} (borrowed {top3NoBorrowings[i]} times)");
+        }
+        Console.WriteLine("================================================");
+        Console.Write("\n  Press enter to return to main menu...");
+        Console.Read();
     }
 }
