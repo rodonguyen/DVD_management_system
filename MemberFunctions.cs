@@ -67,12 +67,21 @@ class MemberFunctions
         IMovie searchedMovie = movieCollection.Search(movie);
         if (searchedMovie == null)
         {
+
             Console.WriteLine("Movie does not exist in the system");
         }
         else
         {
-            searchedMovie.AddBorrower(currentUser);
-            Console.WriteLine("The movie is successfully borrowed, enjoy the movie");
+            if (searchedMovie.Borrowers.Search(currentUser))
+            {
+                Console.WriteLine("You already have borrowed that movie, you can only borrow 1 copy");
+            }
+            else
+            {
+                //Current user borrows the movue
+                searchedMovie.AddBorrower(currentUser);
+                Console.WriteLine("The movie is successfully borrowed");
+            }
         }
 
         //Current user borrows the movue
