@@ -61,10 +61,10 @@ public class StaffFunctions
         else //If the movie is not new
         {
             Console.Write("\n Enter the number of new DvDs to add:  => ");
-            int numCopies = Convert.ToInt32(Console.ReadLine());
+            int numCopies = ConsoleHandler.CheckInteger(Console.ReadLine());
             iMovie.TotalCopies += numCopies;
             //do we need to update the available copies too?
-            Console.Write("\n New DvDs of the movie were added.");
+            Console.Write($"\n {numCopies} DvDs of the movie were added.");
         }
 
         Console.Write("\n  Press enter to return to staff menu...");
@@ -86,7 +86,7 @@ public class StaffFunctions
         else
         {
             Console.Write("\n Enter the number of DVD copies to remove:  => ");
-            int numCopies = Convert.ToInt32(Console.ReadLine());
+            int numCopies = ConsoleHandler.CheckInteger(Console.ReadLine());
             iMovie.TotalCopies -= numCopies;
 
             if (iMovie.TotalCopies > 0)
@@ -107,11 +107,11 @@ public class StaffFunctions
     public void AddMember(IMemberCollection memberCollection)
     {
         Console.WriteLine("\n You have selected to Register a new member.");
-        Console.Write("\n Enter the member’s fist name:  => ");
-        string firstName = Console.ReadLine();
+        Console.Write("\n Enter the member’s first name:  => ");
+        string firstName = ConsoleHandler.CheckString(Console.ReadLine());
 
         Console.Write("\n Enter the member’s last name:  => ");
-        string lastName = Console.ReadLine();
+        string lastName = ConsoleHandler.CheckString(Console.ReadLine());
 
         Console.Write("\n Enter the member’s contact phone number:  => ");
         string phone = Console.ReadLine();
