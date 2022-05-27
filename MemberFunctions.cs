@@ -5,6 +5,10 @@ using System.Text;
 class MemberFunctions
 {
     public static void listOfMovies(IMovieCollection movieCollection) {
+        Console.Clear();
+        Console.WriteLine("================================================");
+        Console.WriteLine("  Movie Collection");
+        Console.WriteLine("================================================");
         //What happens when the movie collection is empty when calling ToArray();
         IMovie[] movieList = movieCollection.ToArray();
         //Is printing the array a better solution than printing the tree
@@ -30,8 +34,12 @@ class MemberFunctions
 
     public static void displayMovieInformation(IMovieCollection movieCollection)
     {
+        Console.Clear();
+        Console.WriteLine("================================================");
+        Console.WriteLine("  Movie Information");
+        Console.WriteLine("================================================");
         //Display information about a movie
-        Console.WriteLine("Please enter a movie name:");
+        Console.WriteLine("Please enter movie name:");
 
         //Read the string input of a movie 
         string movie = ConsoleHandler.CheckString(Console.ReadLine());
@@ -58,7 +66,10 @@ class MemberFunctions
 
         //How does it know which user to add??
         //AddBorrow method to add borrower
-
+        Console.Clear();
+        Console.WriteLine("================================================");
+        Console.WriteLine("  Borrow Movie");
+        Console.WriteLine("================================================");
         Console.WriteLine("What movie would you like to borrow?");
 
         //Looking for the movie
@@ -67,19 +78,17 @@ class MemberFunctions
         IMovie searchedMovie = movieCollection.Search(movie);
         if (searchedMovie == null)
         {
-
             Console.WriteLine("Movie does not exist in the system");
         }
         else
         {
-            if (searchedMovie.Borrowers.Search(currentUser))
+            if (!searchedMovie.AddBorrower(currentUser))
             {
-                Console.WriteLine("You already have borrowed that movie, you can only borrow 1 copy");
+                Console.WriteLine("Borrowing movie unsucessful");
             }
             else
             {
-                //Current user borrows the movue
-                searchedMovie.AddBorrower(currentUser);
+               
                 Console.WriteLine("The movie is successfully borrowed");
             }
         }
@@ -94,28 +103,27 @@ class MemberFunctions
     }
 
     public static void returnAMovie(IMovieCollection movieCollection, IMember currentUser) {
+        Console.Clear();
+        Console.WriteLine("================================================");
+        Console.WriteLine("  Return Movie");
+        Console.WriteLine("================================================");
         Console.WriteLine("What movie would you like to return?:");
 
         //Looking for the movie
         string movie = Console.ReadLine();
 
         IMovie searchedMovie = movieCollection.Search(movie);
-        if (searchedMovie == null)
+        
+        if (searchedMovie.RemoveBorrower(currentUser))
         {
-            
-            Console.WriteLine("Movie does not exist in the system");
+            Console.WriteLine("The movie is successfully returned, have a nice day");
         }
         else
         {
-            if (!searchedMovie.Borrowers.Search(currentUser))
-            {
-                Console.WriteLine("You currently do not have that movie");
-            }
-            else { 
             //Current user borrows the movue
-                searchedMovie.RemoveBorrower(currentUser);
-                Console.WriteLine("The movie is successfully returned, have a nice day");
-            }
+            Console.WriteLine("You do not have a copy of that movie to return");
+
+
         }
 
         Console.Write("\n  Press enter to return to member menu...");
@@ -124,6 +132,7 @@ class MemberFunctions
     }
 
     public static void displayBorrowingMovies(IMember member) {
+        
         // Finding all borrowing movies
         MovieCollection borrowingMovies = new MovieCollection();
         foreach (Movie movie in Program.movieCollection.ToArray())

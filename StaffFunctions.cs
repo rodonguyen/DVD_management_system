@@ -18,7 +18,10 @@ public class StaffFunctions
 
     public void AddNewDvD(IMovieCollection movieCollection)
     {
-        Console.WriteLine("\n You have selected to add DvD copies of a movie");
+        Console.Clear();
+        Console.WriteLine("================================================");
+        Console.WriteLine("  Add New DvD");
+        Console.WriteLine("================================================");
         Console.Write("\n Enter the movie title:  => ");
         string movie = Console.ReadLine();
 
@@ -73,7 +76,10 @@ public class StaffFunctions
 
     public void DeleteDvD(IMovieCollection movieCollection)
     {
-        Console.WriteLine ("\n You have selected to delete DvD copies of a movie");
+        Console.Clear();
+        Console.WriteLine("================================================");
+        Console.WriteLine("  Delete DvD");
+        Console.WriteLine("================================================");
         Console.Write("\n Enter the movie title:  => ");
         string movie = Console.ReadLine();
 
@@ -106,6 +112,10 @@ public class StaffFunctions
 
     public void AddMember(IMemberCollection memberCollection)
     {
+        Console.Clear();
+        Console.WriteLine("================================================");
+        Console.WriteLine("  Add Member");
+        Console.WriteLine("================================================");
         Console.WriteLine("\n You have selected to Register a new member.");
         Console.Write("\n Enter the member’s first name:  => ");
         string firstName = ConsoleHandler.CheckString(Console.ReadLine());
@@ -156,7 +166,10 @@ public class StaffFunctions
 
     public void RemoveMember(IMemberCollection memberCollection)
     {
-        Console.WriteLine("\n You have selected to Remove an existing member.");
+        Console.Clear();
+        Console.WriteLine("================================================");
+        Console.WriteLine("  Remove Member");
+        Console.WriteLine("================================================");
         Console.Write("\n Enter the member’s fist name:  => ");
         string firstName = Console.ReadLine();
 
@@ -164,6 +177,7 @@ public class StaffFunctions
         string lastName = Console.ReadLine();
         
         IMember newMember = new Member(firstName, lastName);
+        
         
         memberCollection.Delete(newMember);
 
@@ -174,7 +188,10 @@ public class StaffFunctions
     }
     public void DisplayMemberPhoneNumber(IMemberCollection memberCollection)
     {
-        Console.WriteLine("\n You have selected to display a member's contact number");
+        Console.Clear();
+        Console.WriteLine("================================================");
+        Console.WriteLine("  Display A Member Phone Number");
+        Console.WriteLine("================================================");
         Console.Write("\n Enter the member’s fist name:  => ");
         string firstName = Console.ReadLine();
 
@@ -209,6 +226,10 @@ public class StaffFunctions
         //print the list of borrowers of that movie
         //
         //return to the main menu
+        Console.Clear();
+        Console.WriteLine("================================================");
+        Console.WriteLine("  Display Movie Borrowers");
+        Console.WriteLine("================================================");
         Console.WriteLine("Please enter a movie to view members borrowing the movie");
         string movie = Console.ReadLine();
         IMovie result = movieCollection.Search(movie); //Searches for the movie
