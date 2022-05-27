@@ -22,7 +22,10 @@ class MemberFunctions
         //if movieCollection is empty
         //print The list of movies is empty please try again later
         //else
-            //print the list of movies in alphabetical order
+        //print the list of movies in alphabetical order
+
+        Console.Write("\n  Press enter to return to member menu...");
+        Console.ReadLine();
     }
 
     public static void displayMovieInformation(IMovieCollection movieCollection)
@@ -38,6 +41,8 @@ class MemberFunctions
         
         //print the movie's information 
         Console.WriteLine(searchedMovie.ToString());
+        Console.Write("\n  Press enter to return to member menu...");
+        Console.ReadLine();
     }
 
     public static void borrowAMovie(IMovieCollection movieCollection, IMember currentUser)
@@ -57,6 +62,8 @@ class MemberFunctions
         searchedMovie.AddBorrower(currentUser);
 
         Console.WriteLine("The movie is successfully borrowed, enjoy the movie");
+        Console.Write("\n  Press enter to return to member menu...");
+        Console.ReadLine();
 
     }
 
@@ -72,6 +79,9 @@ class MemberFunctions
         searchedMovie.RemoveBorrower(currentUser);
 
         Console.WriteLine("The movie is successfully returned, have a nice day");
+        Console.Write("\n  Press enter to return to member menu...");
+        Console.ReadLine();
+
     }
 
     public static void displayBorrowingMovies(IMember member) {
@@ -89,8 +99,8 @@ class MemberFunctions
         foreach (Movie movie in borrowingMovies.ToArray())
             Console.WriteLine("  "+movie.ToString());
         Console.WriteLine("================================================");
-        Console.Write("\n  Press enter to return to main menu...");
-        Console.Read();
+        Console.Write("\n  Press enter to return to member menu...");
+        Console.ReadLine();
     }
 
     public static void displayTop3Movies() {
@@ -138,7 +148,7 @@ class MemberFunctions
                 Console.WriteLine($"    Top {i + 1} - {top3Movies[i].Title} (borrowed {top3NoBorrowings[i]} times)");
         }
         Console.WriteLine("================================================");
-        Console.Write("\n  Press enter to return to main menu...");
-        Console.Read();
+        Console.Write("\n  Press enter to return to member menu...");
+        Console.ReadLine();
     }
 }

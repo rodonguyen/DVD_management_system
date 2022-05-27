@@ -59,7 +59,8 @@ public class StaffFunctions
             Console.Write("\n New DvDs of the movie were added.");
         }
 
-
+        Console.Write("\n  Press enter to return to staff menu...");
+        Console.ReadLine();
     }
 
     public void DeleteDvD(IMovieCollection movieCollection)
@@ -91,7 +92,8 @@ public class StaffFunctions
             }
         }
 
-
+        Console.Write("\n  Press enter to return to staff menu...");
+        Console.ReadLine();
     }
 
     public void AddMember(IMemberCollection memberCollection)
@@ -113,6 +115,9 @@ public class StaffFunctions
 
         memberCollection.Add(newMember);
 
+        Console.Write("\n  Press enter to return to staff menu...");
+        Console.ReadLine();
+
     }
 
     public void RemoveMember(IMemberCollection memberCollection)
@@ -128,8 +133,9 @@ public class StaffFunctions
         
         memberCollection.Delete(newMember);
 
-        
 
+        Console.Write("\n  Press enter to return to staff menu...");
+        Console.ReadLine();
 
     }
     public void DisplayMemberPhoneNumber(IMemberCollection memberCollection)
@@ -152,9 +158,10 @@ public class StaffFunctions
         {
             Console.WriteLine($"Member {firstName} {lastName} does not exist in the system: ");
         }
-        
 
-        
+
+        Console.Write("\n  Press enter to return to staff menu...");
+        Console.ReadLine();
 
     }
 
@@ -188,5 +195,7 @@ public class StaffFunctions
             }
         }
 
+        Console.Write("\n  Press enter to return to staff menu...");
+        Console.ReadLine();
     }
 }

@@ -35,7 +35,7 @@ class Program
         movieCollection.Search("Movie 4").AddBorrower(new Member("E", "E"));
         movieCollection.Search("Movie 4").AddBorrower(new Member("a", "a"));
         movieCollection.Search("Batman").AddBorrower( new Member("a", "a"));
-        MemberFunctions.displayTop3Movies();
+       
 
         ConsoleHandler.MainMenu();
     }
