@@ -42,11 +42,14 @@ public class StaffFunctions
 
 
             Console.Write("\n Enter the movie duration:  => ");
-            
-            int duration = Convert.ToInt32(Console.ReadLine());
+
+
+            int duration = ConsoleHandler.CheckInteger(Console.ReadLine());
+
+
 
             Console.Write("\n Enter the movie number of available copies:  => ");
-            int numCopies = Convert.ToInt32(Console.ReadLine());
+            int numCopies = ConsoleHandler.CheckInteger(Console.ReadLine());
 
             IMovie newMovie = new Movie(movie, genre, classification, duration, numCopies);
             movieCollection.Insert(newMovie);

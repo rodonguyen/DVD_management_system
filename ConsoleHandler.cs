@@ -349,4 +349,27 @@ class ConsoleHandler
             return false;
         }
     }
+
+    public static int CheckInteger(String input)
+    {
+        int num;
+        bool isInt = int.TryParse(input, out num);
+
+        while (!isInt)
+        {
+            
+            Console.WriteLine("---------------------------------------------------------------------------");
+            Console.WriteLine($"  Invalid input ({input}): Please enter a numeric value.");
+            Console.WriteLine("---------------------------------------------------------------------------\n");
+            
+            Console.Write("=> ");
+            input = Console.ReadLine();
+            isInt = int.TryParse(input, out num);
+        }
+
+        return num;
+
+    }
+
+    
 }
