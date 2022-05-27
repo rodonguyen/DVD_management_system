@@ -114,10 +114,36 @@ public class StaffFunctions
         string lastName = ConsoleHandler.CheckString(Console.ReadLine());
 
         Console.Write("\n Enter the member’s contact phone number:  => ");
+
         string phone = Console.ReadLine();
+        bool valid = IMember.IsValidContactNumber(phone);
+        while (!valid)
+        {
+
+            Console.WriteLine("---------------------------------------------------------------------------");
+            Console.WriteLine($"  Invalid input ({phone}): Please enter a valid phone number.");
+            Console.WriteLine("---------------------------------------------------------------------------\n");
+
+            Console.Write("=> ");
+            phone = Console.ReadLine();
+            valid = IMember.IsValidContactNumber(phone);
+        }
+       
 
         Console.Write("\n Enter the member’s password:  => ");
         string pin = Console.ReadLine();
+        bool validPin = IMember.IsValidPin(pin);
+        while (!validPin)
+        {
+
+            Console.WriteLine("---------------------------------------------------------------------------");
+            Console.WriteLine($"  Invalid input ({pin}): Please enter a valid pin number.");
+            Console.WriteLine("---------------------------------------------------------------------------\n");
+
+            Console.Write("=> ");
+            pin = Console.ReadLine();
+            validPin = IMember.IsValidPin(pin);
+        }
 
         IMember newMember = new Member(firstName, lastName, phone, pin);
 
@@ -164,7 +190,7 @@ public class StaffFunctions
         }
         else
         {
-            Console.WriteLine($"Member {firstName} {lastName} does not exist in the system: ");
+            Console.WriteLine($"Member {firstName}, {lastName} does not exist in the system");
         }
 
 

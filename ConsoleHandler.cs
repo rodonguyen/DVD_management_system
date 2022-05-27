@@ -375,6 +375,8 @@ class ConsoleHandler
         int num;
         bool isInt = int.TryParse(input, out num);
 
+       
+
         while (isInt)
         {
 
@@ -389,5 +391,7 @@ class ConsoleHandler
 
         return input;
     }
+
+    
 
 }

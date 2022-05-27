@@ -34,13 +34,21 @@ class MemberFunctions
         Console.WriteLine("Please enter a movie name:");
 
         //Read the string input of a movie 
-        string movie = Console.ReadLine();
-        
+        string movie = ConsoleHandler.CheckString(Console.ReadLine());
+       
 
         IMovie searchedMovie = movieCollection.Search(movie);
+
+        if (searchedMovie == null)
+        {
+            Console.WriteLine("Movie does not exist in the system");
+        }
+        else {
+            Console.WriteLine(searchedMovie.ToString());
+        }
         
         //print the movie's information 
-        Console.WriteLine(searchedMovie.ToString());
+        
         Console.Write("\n  Press enter to return to member menu...");
         Console.ReadLine();
     }
@@ -57,11 +65,20 @@ class MemberFunctions
         string movie = Console.ReadLine();
 
         IMovie searchedMovie = movieCollection.Search(movie);
-        
-        //Current user borrows the movue
-        searchedMovie.AddBorrower(currentUser);
+        if (searchedMovie == null)
+        {
+            Console.WriteLine("Movie does not exist in the system");
+        }
+        else
+        {
+            searchedMovie.AddBorrower(currentUser);
+            Console.WriteLine("The movie is successfully borrowed, enjoy the movie");
+        }
 
-        Console.WriteLine("The movie is successfully borrowed, enjoy the movie");
+        //Current user borrows the movue
+        
+
+        
         Console.Write("\n  Press enter to return to member menu...");
         Console.ReadLine();
 
@@ -74,11 +91,24 @@ class MemberFunctions
         string movie = Console.ReadLine();
 
         IMovie searchedMovie = movieCollection.Search(movie);
+        if (searchedMovie == null)
+        {
+            
+            Console.WriteLine("Movie does not exist in the system");
+        }
+        else
+        {
+            if (!searchedMovie.Borrowers.Search(currentUser))
+            {
+                Console.WriteLine("You currently do not have that movie");
+            }
+            else { 
+            //Current user borrows the movue
+                searchedMovie.RemoveBorrower(currentUser);
+                Console.WriteLine("The movie is successfully returned, have a nice day");
+            }
+        }
 
-        //Current user borrows the movue
-        searchedMovie.RemoveBorrower(currentUser);
-
-        Console.WriteLine("The movie is successfully returned, have a nice day");
         Console.Write("\n  Press enter to return to member menu...");
         Console.ReadLine();
 
