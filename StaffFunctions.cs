@@ -30,11 +30,16 @@ public class StaffFunctions
             Console.WriteLine("\n Looks like this DvD is from a movie that has not been added to the database yet.");
             Console.WriteLine("Please add a few more details about the movie:");
 
+            /*
             Console.Write("\n Enter the movie genre:  => ");
             MovieGenre genre = (MovieGenre)Convert.ToInt32(Console.ReadLine());
 
             Console.Write("\n Enter the movie classification:  => ");
             MovieClassification classification = (MovieClassification)Convert.ToInt32(Console.ReadLine());
+            */
+            MovieGenre genre = ConsoleHandler.SelectMovieGenre();
+            MovieClassification classification = ConsoleHandler.SelectMovieClassification();
+
 
             Console.Write("\n Enter the movie duration:  => ");
             

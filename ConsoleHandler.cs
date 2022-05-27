@@ -86,7 +86,7 @@ class ConsoleHandler
         StaffMenu();
     }
 
-    /*
+    
     public static MovieGenre SelectMovieGenre()
     {
         DisplaySelectMovieGenre();
@@ -159,7 +159,7 @@ class ConsoleHandler
         Console.WriteLine("=====================================================================");
 
     }
-    */
+    
 
 
     private static void StaffMenu()
