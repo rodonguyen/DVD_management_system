@@ -8,7 +8,7 @@ class ConsoleHandler
     {
         Console.Clear();
         DisplayMainMenu();
-        String choice = Console.ReadLine();
+        string choice = Console.ReadLine();
         bool isValidChoice = CheckChoice(choice, 0, 2);
 
         while (!isValidChoice)
@@ -19,7 +19,6 @@ class ConsoleHandler
             Console.WriteLine( "-----------------------------------------------------------------------\n");
 
             DisplayMainMenu();
-            //Console.CursorLeft -= 25;  // Move cursor back, near the arrow
             choice = Console.ReadLine();
             isValidChoice = CheckChoice(choice, 0, 2);
         }
@@ -60,8 +59,8 @@ class ConsoleHandler
     {
         Console.WriteLine("============================ Staff Login =============================");
         Console.WriteLine("  Enter staff's username and password                               \n");
-        Console.Write("    Username: ");      String username = Console.ReadLine();
-        Console.Write("    Password: ");      String password = Console.ReadLine();
+        Console.Write("    Username: "); string username = Console.ReadLine();
+        Console.Write("    Password: "); string password = Console.ReadLine();
 
         bool isValidUsername = username == "staff";
         bool isValidPassword = password == "today123";
@@ -76,8 +75,8 @@ class ConsoleHandler
             Console.WriteLine("----------------------------------------------------------------------\n");
             Console.WriteLine("============================ Staff Login =============================");
             Console.WriteLine("  Enter staff's username and password");
-            Console.Write("    Username: ");       username = Console.ReadLine();
-            Console.Write("    Password: ");       password = Console.ReadLine();
+            Console.Write("    Username: ");   username = Console.ReadLine();
+            Console.Write("    Password: ");   password = Console.ReadLine();
 
             isValidUsername = username == "staff";
             isValidPassword = password == "today123";
@@ -95,7 +94,7 @@ class ConsoleHandler
         Console.Clear();
         DisplayStaffMenu();
 
-        String choice = Console.ReadLine();
+        string choice = Console.ReadLine();
         bool isValidChoice = CheckChoice(choice, 0, 6);
 
         while (!isValidChoice) {
@@ -154,9 +153,9 @@ class ConsoleHandler
     {
         Console.WriteLine("============================ Member Login =============================");
         Console.WriteLine("  Enter your member's first name, last name and password               ");
-        Console.Write("    First name: ");     String firstname = Console.ReadLine();
-        Console.Write("    Last name: ");      String lastname  = Console.ReadLine();
-        Console.Write("    Password: ");       String password  = Console.ReadLine(); 
+        Console.Write("    First name: "); string firstname = Console.ReadLine();
+        Console.Write("    Last name: ");  string lastname  = Console.ReadLine();
+        Console.Write("    Password: ");   string password  = Console.ReadLine(); 
 
         IMember memberFound = Program.memberCollection.Find(new Member(firstname, lastname));
         bool isValidMember = false;
@@ -188,7 +187,7 @@ class ConsoleHandler
     {
         Console.Clear();
         DisplayMemberMenu();
-        String choice = Console.ReadLine();
+        string choice = Console.ReadLine();
         bool isValidChoice = CheckChoice(choice, 0, 6);
 
         while (!isValidChoice) {
@@ -269,10 +268,8 @@ class ConsoleHandler
 
     public static bool CheckChoice(String inputString, int minValue, int maxValue)
     {
-        int num;
-        bool isInt = int.TryParse(inputString, out num);
-        if (isInt)
-        {
+        bool isInt = int.TryParse(inputString, out int num);
+        if (isInt) {
             bool isValidChoice = num <= maxValue && num >= minValue;
             return isValidChoice;
         }
