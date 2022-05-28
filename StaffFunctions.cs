@@ -4,6 +4,115 @@ using System.Text;
 
 public class StaffFunctions
 {
+    // ------------------------------------- Assistive Functions ------------------------------------------
+    private static bool CheckInteger(String input)
+    {
+        bool isInt = int.TryParse(input, out _);
+        return isInt;
+    }
+
+    private static MovieGenre SelectMovieGenre()
+    {
+        DisplaySelectMovieGenre();
+
+        string genre = Console.ReadLine();
+        bool isGenreValid = ConsoleHandler.CheckChoice(genre, 1, 5);
+
+        while (!isGenreValid)
+        {
+            Console.WriteLine("\n  !!!!!");
+            Console.WriteLine($"  Invalid choice ({genre}): Your choice must be an integer from 1 to 5!");
+            Console.Write("  Re-enter your choice (1/2/3/4/5) => ");
+            genre = Console.ReadLine();
+            isGenreValid = ConsoleHandler.CheckChoice(genre, 1, 5);
+        }
+
+
+        return (MovieGenre)Convert.ToInt32(genre);
+    }
+
+    private static MovieClassification SelectMovieClassification()
+    {
+        DisplaySelectMovieClassification();
+        string classification = Console.ReadLine();
+        bool isValidGenre = ConsoleHandler.CheckChoice(classification, 1, 4);
+
+        while (!isValidGenre)
+        {
+            Console.WriteLine("\n  !!!!!");
+            Console.WriteLine($"  Invalid choice ({classification}): Your choice must be an integer from 1 to 4!");
+            Console.Write("  Re-enter your choice (1/2/3/4) => ");
+            classification = Console.ReadLine();
+            isValidGenre = ConsoleHandler.CheckChoice(classification, 1, 4);
+        }
+
+        return (MovieClassification)Convert.ToInt32(classification);
+    }
+
+    private static int EnterMovieDuration()
+    {
+        Console.WriteLine("\n--------------------------------------------------");
+        Console.Write("  Enter movie duration  =>  ");
+        string duration = Console.ReadLine();
+        bool isValidDuration = CheckInteger(duration);
+
+        while (!isValidDuration)
+        {
+            Console.WriteLine("\n  !!!!!");
+            Console.WriteLine($"  Invalid duration ({duration}). Please enter a numeric value.");
+            Console.Write("  Re-enter duration   =>  ");
+            duration = Console.ReadLine();
+            isValidDuration = CheckInteger(duration);
+        }
+
+        return int.Parse(duration);
+    }
+
+    private static int EnterMovieCopies(string prompt)
+    {
+        Console.WriteLine("\n--------------------------------------------------");
+        Console.Write($"  {prompt}  =>  ");
+        string copiesNum = Console.ReadLine();
+        bool isValidCopiesNum = CheckInteger(copiesNum);
+
+        while (!isValidCopiesNum)
+        {
+            Console.WriteLine("\n  !!!!!");
+            Console.WriteLine($"  Invalid number of copies ({copiesNum}). Please enter a numeric value.");
+
+            Console.Write("  Re-enter the number of copies  =>  ");
+            copiesNum = Console.ReadLine();
+            isValidCopiesNum = CheckInteger(copiesNum);
+        }
+        return int.Parse(copiesNum);
+    }
+
+
+    private static void DisplaySelectMovieGenre()
+    {
+        Console.WriteLine("\n--------------------------------------------------");
+        Console.WriteLine("  Select the movie genre:");
+        Console.WriteLine("    1. Action");
+        Console.WriteLine("    2. Comedy");
+        Console.WriteLine("    3. History");
+        Console.WriteLine("    4. Drama");
+        Console.WriteLine("    5. Western");
+        Console.Write("  Enter your choice (1/2/3/4/5)  =>  ");
+    }
+    private static void DisplaySelectMovieClassification()
+    {
+        Console.WriteLine("\n--------------------------------------------------");
+        Console.WriteLine("  Select the movie classification:");
+        Console.WriteLine("    1. G");
+        Console.WriteLine("    2. PG");
+        Console.WriteLine("    3. M");
+        Console.WriteLine("    4. M15Plus");
+        Console.Write("  Enter your choice (1/2/3/4) => ");
+    }
+
+
+
+    // -------------------------------- Main Console Staff Function ---------------------------------
 
 
     // Add new DvD movie to the system
@@ -14,15 +123,13 @@ public class StaffFunctions
     // If the movie is not new (the library has some DVDs of this
     // movie), then only the total quantity of the movie DVDs needs to be
     // updated, but the information about the movie needs not to be re-entered.
-
-
     public void AddNewDvD(IMovieCollection movieCollection)
     {
         Console.Clear();
         Console.WriteLine("================================================");
-        Console.WriteLine("  Add New DvD");
+        Console.WriteLine("             Add New Movie DVDs");
         Console.WriteLine("================================================");
-        Console.Write("\n Enter the movie title:  => ");
+        Console.Write("\n  Enter the movie title  => ");
         string movie = Console.ReadLine();
 
         IMovie iMovie = movieCollection.Search(movie);
@@ -30,8 +137,8 @@ public class StaffFunctions
         //If the movie is new
         if (iMovie == null)
         {
-            Console.WriteLine("\n Looks like this DvD is from a movie that has not been added to the database yet.");
-            Console.WriteLine("Please add a few more details about the movie:");
+            Console.WriteLine("\n  You are adding a new movie");
+            Console.WriteLine("  Please add a few more details about the movie");
 
             /*
             Console.Write("\n Enter the movie genre:  => ");
@@ -40,34 +147,23 @@ public class StaffFunctions
             Console.Write("\n Enter the movie classification:  => ");
             MovieClassification classification = (MovieClassification)Convert.ToInt32(Console.ReadLine());
             */
-            MovieGenre genre = ConsoleHandler.SelectMovieGenre();
-            MovieClassification classification = ConsoleHandler.SelectMovieClassification();
+            MovieGenre genre = SelectMovieGenre();
+            MovieClassification classification = SelectMovieClassification();
+            int duration = EnterMovieDuration();
 
-
-            Console.Write("\n Enter the movie duration:  => ");
-
-
-            int duration = ConsoleHandler.CheckInteger(Console.ReadLine());
-
-
-
-            Console.Write("\n Enter the movie number of available copies:  => ");
-            int numCopies = ConsoleHandler.CheckInteger(Console.ReadLine());
+            int numCopies = EnterMovieCopies("Enter the number of copies");
 
             IMovie newMovie = new Movie(movie, genre, classification, duration, numCopies);
             movieCollection.Insert(newMovie);
 
-            Console.Write( $"  \nThe movie({ movie}) was added to the database with new DvDs!");
-
-
+            Console.WriteLine( $"\n  The movie ({ movie}) was added to the database!");
         }
         else //If the movie is not new
         {
-            Console.Write("\n Enter the number of new DvDs to add:  => ");
-            int numCopies = ConsoleHandler.CheckInteger(Console.ReadLine());
-            iMovie.TotalCopies += numCopies;
+            int numCopies = EnterMovieCopies("Enter the new total number of copies");
+            iMovie.TotalCopies = numCopies;
             //do we need to update the available copies too?
-            Console.Write($"\n {numCopies} DvDs of the movie were added.");
+            Console.WriteLine($"\n  The number of DVDS is updated ({numCopies}).");
         }
 
         Console.Write("\n  Press enter to return to staff menu...");
@@ -80,29 +176,28 @@ public class StaffFunctions
         Console.WriteLine("================================================");
         Console.WriteLine("  Delete DvD");
         Console.WriteLine("================================================");
-        Console.Write("\n Enter the movie title:  => ");
+        Console.Write("\n  Enter the movie title:  => ");
         string movie = Console.ReadLine();
 
         IMovie iMovie = movieCollection.Search(movie);
 
         if (iMovie == null)
         {
-            Console.Write("\n DVD copies of {0} cannot be deleted because that movie is not in the database", movie);
+            Console.Write("\n  DVD copies of {0} cannot be deleted because that movie is not in the database", movie);
         }
         else
         {
-            Console.Write("\n Enter the number of DVD copies to remove:  => ");
-            int numCopies = ConsoleHandler.CheckInteger(Console.ReadLine());
+            int numCopies = EnterMovieCopies("  Enter the number of DVD copies to remove");
             iMovie.TotalCopies -= numCopies;
 
             if (iMovie.TotalCopies > 0)
             {
-                Console.Write("\n DVD copies of the movie were removed.");
+                Console.Write("\n  DVD copies of the movie were removed.");
             }
             if(iMovie.TotalCopies <= 0)
             {
                 movieCollection.Delete(iMovie);
-                Console.Write("\n All DVD copies of {0} were removed. The movie was deleted from the database", movie);
+                Console.Write("\n  All DVD copies of {0} were removed. The movie was deleted from the database", movie);
             }
         }
 
@@ -116,14 +211,14 @@ public class StaffFunctions
         Console.WriteLine("================================================");
         Console.WriteLine("  Add Member");
         Console.WriteLine("================================================");
-        Console.WriteLine("\n You have selected to Register a new member.");
-        Console.Write("\n Enter the member’s first name:  => ");
+        Console.WriteLine("\n  You have selected to Register a new member.");
+        Console.Write("\n  Enter the member’s first name:  => ");
         string firstName = ConsoleHandler.CheckString(Console.ReadLine());
 
-        Console.Write("\n Enter the member’s last name:  => ");
+        Console.Write("\n  Enter the member’s last name:  => ");
         string lastName = ConsoleHandler.CheckString(Console.ReadLine());
 
-        Console.Write("\n Enter the member’s contact phone number:  => ");
+        Console.Write("\n  Enter the member’s contact phone number:  => ");
 
         string phone = Console.ReadLine();
         bool valid = IMember.IsValidContactNumber(phone);

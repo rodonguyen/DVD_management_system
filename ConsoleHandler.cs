@@ -86,79 +86,7 @@ class ConsoleHandler
         StaffMenu();
     }
 
-    
-    public static MovieGenre SelectMovieGenre()
-    {
-        DisplaySelectMovieGenre();
-        Console.Write("\n\n  Enter your choice (1/2/3/4/5) => ");
-
-        string genre = Console.ReadLine();
-        bool isGenreValid = CheckChoice(genre, 1, 5);
-
-        while (!isGenreValid)
-        {
-            
-            Console.WriteLine("---------------------------------------------------------------------------");
-            Console.WriteLine($"  Invalid choice ({genre}): Your choice must be an integer from 1 to 5!");
-            Console.WriteLine("---------------------------------------------------------------------------\n");
-
-            Console.Write("\n Enter your choice (1/2/3/4/5) => ");
-            genre = Console.ReadLine();
-            isGenreValid = CheckChoice(genre, 1, 5);
-        }
-
-
-        return (MovieGenre)Convert.ToInt32(genre);
-    }
-
-    public static MovieClassification SelectMovieClassification()
-    {
-        DisplaySelectMovieClassification();
-        Console.Write("\n\n  Enter your choice (1/2/3/4) => ");
-
-        string classification = Console.ReadLine();
-        bool isGenreValid = CheckChoice(classification, 1, 4);
-
-        while (!isGenreValid)
-        {
-            
-            Console.WriteLine("---------------------------------------------------------------------------");
-            Console.WriteLine($"  Invalid choice ({classification}): Your choice must be an integer from 1 to 4!");
-            Console.WriteLine("---------------------------------------------------------------------------\n");
-
-            Console.Write("\n Enter your choice (1/2/3/4) => ");
-            classification = Console.ReadLine();
-            isGenreValid = CheckChoice(classification, 1, 4);
-        }
-
-        return (MovieClassification)Convert.ToInt32(classification);
-    }
-
-
-
-    public static void DisplaySelectMovieGenre()
-    {
-
-        Console.WriteLine("\n Select the movie genre:  => ");
-        Console.WriteLine("  1. Action");
-        Console.WriteLine("  2. Comedy");
-        Console.WriteLine("  3. History");
-        Console.WriteLine("  4. Drama");
-        Console.WriteLine("  5. Western");
-        Console.WriteLine("=====================================================================");
-
-
-    }
-    public static void DisplaySelectMovieClassification()
-    {
-        Console.WriteLine("\n Select the movie classification:  => ");
-        Console.WriteLine("  1. G");
-        Console.WriteLine("  2. PG");
-        Console.WriteLine("  3. M");
-        Console.WriteLine("  4. M15Plus");
-        Console.WriteLine("=====================================================================");
-
-    }
+   
     
 
 
@@ -339,47 +267,28 @@ class ConsoleHandler
     }
 
 
-    private static bool CheckChoice(String inputString, int minValue, int maxValue)
-    {
-        try {
-            int input = int.Parse(inputString);
-            bool isValidChoice = input <= maxValue && input >= minValue;
-            return isValidChoice;
-        } catch {
-            return false;
-        }
-    }
-
-    public static int CheckInteger(String input)
+    public static bool CheckChoice(String inputString, int minValue, int maxValue)
     {
         int num;
-        bool isInt = int.TryParse(input, out num);
-
-        while (!isInt)
+        bool isInt = int.TryParse(inputString, out num);
+        if (isInt)
         {
-            
-            Console.WriteLine("---------------------------------------------------------------------------");
-            Console.WriteLine($"  Invalid input ({input}): Please enter a numeric value.");
-            Console.WriteLine("---------------------------------------------------------------------------\n");
-            
-            Console.Write("=> ");
-            input = Console.ReadLine();
-            isInt = int.TryParse(input, out num);
+            bool isValidChoice = num <= maxValue && num >= minValue;
+            return isValidChoice;
         }
-
-        return num;
+        else
+            return false;
     }
+
+
 
     public static string CheckString(String input)
     {
         int num;
         bool isInt = int.TryParse(input, out num);
 
-       
-
         while (isInt)
         {
-
             Console.WriteLine("---------------------------------------------------------------------------");
             Console.WriteLine($"  Invalid input ({input}): Please enter a word.");
             Console.WriteLine("---------------------------------------------------------------------------\n");
