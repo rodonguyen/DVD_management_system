@@ -191,17 +191,29 @@ public class StaffFunctions
             Console.Write("\n  DVD copies of {0} cannot be deleted because that movie is not in the database", movie);
         else {
             int numCopies = EnterMovieCopies("Enter the number of DVD copies to remove");
-            searchResult.TotalCopies -= numCopies;
 
-            if (searchResult.TotalCopies > 0)
+            if (searchResult.AvailableCopies < numCopies)
             {
-                Console.Write("\n  {0} DVD copy/ies of the movie are removed.", numCopies);
+                Console.WriteLine("\n  Cannot remove {0} DVD copy/ies of the movie.", numCopies);
+                Console.WriteLine("  There is not enough available copies available to remove.");
             }
-            if(searchResult.TotalCopies <= 0)
+
+            else
             {
-                Program.movieCollection.Delete(searchResult);
-                Console.Write("\n  All DVD copies of {0} are removed. The movie is deleted from the database", movie);
+                searchResult.TotalCopies -= numCopies;
+
+                if (searchResult.TotalCopies > 0)
+                {
+                    Console.Write("\n  {0} DVD copy/ies of the movie are removed.", numCopies);
+                }
+                if (searchResult.TotalCopies <= 0)
+                {
+                    Program.movieCollection.Delete(searchResult);
+                    Console.Write("\n  All DVD copies of {0} are removed. The movie is deleted from the database", movie);
+                }
             }
+            
+
         }
 
         Console.WriteLine("\n================================================");
@@ -273,7 +285,6 @@ public class StaffFunctions
 
         Member toDelete = new Member(firstName, lastName);
 
-        MovieCollection borrowingMovies = new MovieCollection();
         foreach (Movie movie in Program.movieCollection.ToArray())
             if (movie.Borrowers.Search(toDelete))
                 movie.RemoveBorrower(toDelete);
