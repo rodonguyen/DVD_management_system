@@ -64,7 +64,7 @@ public class StaffFunctions
 
     private static int EnterMovieDuration()
     {
-        Console.WriteLine("\n--------------------------------------------------");
+        Console.WriteLine("\n------------------------------------------------");
         Console.Write("  Enter movie duration  =>  ");
         string duration = Console.ReadLine();
         bool isValidDuration = CheckInteger(duration);
@@ -82,7 +82,7 @@ public class StaffFunctions
     }
 
     private static int EnterMovieCopies(string prompt) {
-        Console.WriteLine("\n--------------------------------------------------");
+        Console.WriteLine("\n------------------------------------------------");
         Console.Write($"  {prompt}  =>  ");
         string copiesNum = Console.ReadLine();
         bool isValidCopiesNum = CheckInteger(copiesNum);
@@ -101,7 +101,7 @@ public class StaffFunctions
 
 
     private static void DisplaySelectMovieGenre() {
-        Console.WriteLine("\n--------------------------------------------------");
+        Console.WriteLine("\n------------------------------------------------");
         Console.WriteLine("  Select the movie genre:");
         Console.WriteLine("    1. Action");
         Console.WriteLine("    2. Comedy");
@@ -111,7 +111,7 @@ public class StaffFunctions
         Console.Write("  Enter your choice (1/2/3/4/5)  =>  ");
     }
     private static void DisplaySelectMovieClassification() {
-        Console.WriteLine("\n--------------------------------------------------");
+        Console.WriteLine("\n------------------------------------------------");
         Console.WriteLine("  Select the movie classification:");
         Console.WriteLine("    1. G");
         Console.WriteLine("    2. PG");
@@ -172,7 +172,8 @@ public class StaffFunctions
             Console.WriteLine($"\n  The number of DVDS is updated ({numCopies}).");
         }
 
-        Console.Write("\n  Press enter to return to staff menu...");
+        Console.WriteLine("\n================================================");
+        Console.Write("  Press enter to return to staff menu...");
         Console.ReadLine();
     }
 
