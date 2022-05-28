@@ -181,9 +181,9 @@ class MemberCollection : IMemberCollection
     // Post-condition: a string containing the information about all the members in this member collection is returned
     public string ToString()
     {
-        string s = "  ";
+        string s = "    ";
         for (int i = 0; i < count; i++)
-            s = s + members[i].ToString() + "\n  ";
+            s = s + members[i].ToString() + "\n    ";
         return s;
     }
 }

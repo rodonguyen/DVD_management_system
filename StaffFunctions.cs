@@ -20,12 +20,10 @@ public class StaffFunctions
     //        Console.WriteLine("---------------------------------------------------------------------------");
     //        Console.WriteLine($"  Invalid input ({input}): Please enter a word.");
     //        Console.WriteLine("---------------------------------------------------------------------------\n");
-
     //        Console.Write("=> ");
     //        input = Console.ReadLine();
     //        isInt = int.TryParse(input, out num);
     //    }
-
     //    return input;
     //}
 
@@ -123,7 +121,7 @@ public class StaffFunctions
 
 
 
-    // -------------------------------- Main Console Staff Function ---------------------------------
+    // -------------------------- Main Console Staff Function ---------------------------
 
 
     // Add new DvD movie to the system
@@ -187,21 +185,21 @@ public class StaffFunctions
         Console.Write("\n  Enter the movie title  => ");
         string movie = Console.ReadLine();
 
-        IMovie iMovie = Program.movieCollection.Search(movie);
+        IMovie searchResult = Program.movieCollection.Search(movie);
 
-        if (iMovie == null)
+        if (searchResult == null)
             Console.Write("\n  DVD copies of {0} cannot be deleted because that movie is not in the database", movie);
         else {
-            int numCopies = EnterMovieCopies("  Enter the number of DVD copies to remove");
-            iMovie.TotalCopies -= numCopies;
+            int numCopies = EnterMovieCopies("Enter the number of DVD copies to remove");
+            searchResult.TotalCopies -= numCopies;
 
-            if (iMovie.TotalCopies > 0)
+            if (searchResult.TotalCopies > 0)
             {
-                Console.Write("\n  DVD copies of the movie were removed.");
+                Console.Write("\n  {0} DVD copy/ies of the movie are removed.", numCopies);
             }
-            if(iMovie.TotalCopies <= 0)
+            if(searchResult.TotalCopies <= 0)
             {
-                Program.movieCollection.Delete(iMovie);
+                Program.movieCollection.Delete(searchResult);
                 Console.Write("\n  All DVD copies of {0} are removed. The movie is deleted from the database", movie);
             }
         }
@@ -310,14 +308,10 @@ public class StaffFunctions
 
     //pre-condition: 
     public void PrintBorrowersOfMovie() {
-        //Checks if the movie (IMovie) exists in the list?
-        //If number of total copies == number of available copies
-        //Return "no one is currently borriwing this movie"
-        //else
-        //
-        //print the list of borrowers of that movie
-        //
-        //return to the main menu
+        // Checks if the movie (IMovie) exists in the list?
+        // If number of total copies == number of available copies
+        // Return "no one is currently borriwing this movie"
+        // Else print the list of borrowers of that movie 
         Console.Clear();
         Console.WriteLine("================================================");
         Console.WriteLine("         Display Borrowers of a Movie");
