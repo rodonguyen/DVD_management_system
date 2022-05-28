@@ -271,8 +271,15 @@ public class StaffFunctions
         Console.Write("  Enter the member’s last name  =>  ");
         string lastName = Console.ReadLine();
 
+        Member toDelete = new Member(firstName, lastName);
+
+        MovieCollection borrowingMovies = new MovieCollection();
+        foreach (Movie movie in Program.movieCollection.ToArray())
+            if (movie.Borrowers.Search(toDelete))
+                movie.RemoveBorrower(toDelete);
+
         Console.WriteLine();
-        Program.memberCollection.Delete(new Member(firstName, lastName));
+        Program.memberCollection.Delete(toDelete);
 
         Console.WriteLine("\n================================================");
         Console.Write("  Press enter to return to staff menu...");
