@@ -5,9 +5,10 @@ using System.Text;
 public class StaffFunctions
 {
     // ------------------------------------- Assistive Functions ------------------------------------------
-    private static bool CheckInteger(String input)
+    private static bool CheckInteger(String input, bool checkMinValue = false, int minValue = 1)
     {
-        bool isInt = int.TryParse(input, out _);
+        bool isInt = int.TryParse(input, out int ouput);
+        if (checkMinValue) isInt = isInt && ouput >= minValue;
         return isInt;
     }
 
@@ -53,7 +54,7 @@ public class StaffFunctions
 
         while (!isValidGenre) {
             Console.WriteLine("\n  !!!!!");
-            Console.WriteLine($"  Invalid choice ({classification}): Your choice must be an integer from 1 to 4!");
+            Console.WriteLine($"  Invalid choice ({classification}). Must enter an integer from 1 to 4!");
             Console.Write("  Re-enter your choice (1/2/3/4) => ");
             classification = Console.ReadLine();
             isValidGenre = ConsoleHandler.CheckChoice(classification, 1, 4);
@@ -67,15 +68,15 @@ public class StaffFunctions
         Console.WriteLine("\n------------------------------------------------");
         Console.Write("  Enter movie duration  =>  ");
         string duration = Console.ReadLine();
-        bool isValidDuration = CheckInteger(duration);
+        bool isValidDuration = CheckInteger(duration, true);
 
         while (!isValidDuration)
         {
             Console.WriteLine("\n  !!!!!");
-            Console.WriteLine($"  Invalid duration ({duration}). Please enter a numeric value.");
+            Console.WriteLine($"  Invalid duration ({duration}). Please enter a positive integer.");
             Console.Write("  Re-enter duration   =>  ");
             duration = Console.ReadLine();
-            isValidDuration = CheckInteger(duration);
+            isValidDuration = CheckInteger(duration, true);
         }
 
         return int.Parse(duration);
@@ -85,16 +86,16 @@ public class StaffFunctions
         Console.WriteLine("\n------------------------------------------------");
         Console.Write($"  {prompt}  =>  ");
         string copiesNum = Console.ReadLine();
-        bool isValidCopiesNum = CheckInteger(copiesNum);
+        bool isValidCopiesNum = CheckInteger(copiesNum, true);
 
         while (!isValidCopiesNum)
         {
             Console.WriteLine("\n  !!!!!");
-            Console.WriteLine($"  Invalid number of copies ({copiesNum}). Please enter a numeric value.");
+            Console.WriteLine($"  Invalid number of copies ({copiesNum}). Please enter a positive integer.");
 
             Console.Write("  Re-enter the number of copies  =>  ");
             copiesNum = Console.ReadLine();
-            isValidCopiesNum = CheckInteger(copiesNum);
+            isValidCopiesNum = CheckInteger(copiesNum, true);
         }
         return int.Parse(copiesNum);
     }
@@ -162,14 +163,14 @@ public class StaffFunctions
             int numCopies = EnterMovieCopies("Enter the number of copies");
 
             Program.movieCollection.Insert(new Movie(movie, genre, classification, duration, numCopies));
-            Console.WriteLine( $"\n  The movie ({ movie}) was added to the database!");
+            Console.WriteLine( $"\n  The movie ({movie}) was added to the database!");
         }
         else //If the movie is not new
         {
-            int numCopies = EnterMovieCopies("Enter the new total number of copies");
+            int numCopies = EnterMovieCopies("Enter the new TOTAL number of copies");
             iMovie.TotalCopies = numCopies;
             //do we need to update the available copies too?
-            Console.WriteLine($"\n  The number of DVDS is updated ({numCopies}).");
+            Console.WriteLine($"\n  The number of DVDS is updated ({numCopies} copies).");
         }
 
         Console.WriteLine("\n================================================");
@@ -183,17 +184,14 @@ public class StaffFunctions
         Console.WriteLine("================================================");
         Console.WriteLine("                Remove DVD");
         Console.WriteLine("================================================");
-        Console.Write("\n  Enter the movie title:  => ");
+        Console.Write("\n  Enter the movie title  => ");
         string movie = Console.ReadLine();
 
         IMovie iMovie = Program.movieCollection.Search(movie);
 
         if (iMovie == null)
-        {
             Console.Write("\n  DVD copies of {0} cannot be deleted because that movie is not in the database", movie);
-        }
-        else
-        {
+        else {
             int numCopies = EnterMovieCopies("  Enter the number of DVD copies to remove");
             iMovie.TotalCopies -= numCopies;
 
@@ -204,11 +202,12 @@ public class StaffFunctions
             if(iMovie.TotalCopies <= 0)
             {
                 Program.movieCollection.Delete(iMovie);
-                Console.Write("\n  All DVD copies of {0} were removed. The movie was deleted from the database", movie);
+                Console.Write("\n  All DVD copies of {0} are removed. The movie is deleted from the database", movie);
             }
         }
 
-        Console.Write("\n  Press enter to return to staff menu...");
+        Console.WriteLine("\n================================================");
+        Console.Write("  Press Enter to return to staff menu...");
         Console.ReadLine();
     }
 
@@ -216,51 +215,48 @@ public class StaffFunctions
     {
         Console.Clear();
         Console.WriteLine("================================================");
-        Console.WriteLine("  Add Member");
+        Console.WriteLine("                  Add Member");
         Console.WriteLine("================================================");
-        Console.WriteLine("\n  You have selected to Register a new member.");
-        Console.Write("\n  Enter the member’s first name:  => ");
+
+        Console.Write("\n  Enter the member’s first name  =>  ");
         string firstName = Console.ReadLine();
 
-        Console.Write("\n  Enter the member’s last name:  => ");
+        Console.WriteLine("\n------------------------------------------------");
+        Console.Write("  Enter the member’s last name  => ");
         string lastName = Console.ReadLine();
 
-        Console.Write("\n  Enter the member’s contact phone number:  => ");
-
+        Console.WriteLine("\n------------------------------------------------");
+        Console.Write("  Enter the member’s contact phone number  => ");
         string phone = Console.ReadLine();
-        bool valid = IMember.IsValidContactNumber(phone);
-        while (!valid)
-        {
-            Console.WriteLine("---------------------------------------------------------------------------");
-            Console.WriteLine($"  Invalid input ({phone}): Please enter a valid phone number.");
-            Console.WriteLine("---------------------------------------------------------------------------\n");
+        bool isValidContactNumber = IMember.IsValidContactNumber(phone);
+        while (!isValidContactNumber)  {
+            Console.WriteLine("\n  !!!!!");
+            Console.WriteLine($"  Invalid input ({phone}). Please enter a valid phone number.");
+            Console.Write("  Phone number  =>  ");
 
-            Console.Write("=> ");
             phone = Console.ReadLine();
-            valid = IMember.IsValidContactNumber(phone);
+            isValidContactNumber = IMember.IsValidContactNumber(phone);
         }
-       
 
-        Console.Write("\n Enter the member’s password:  => ");
+        Console.WriteLine("\n------------------------------------------------");
+        Console.Write("  Enter the member’s PIN  => ");
         string pin = Console.ReadLine();
         bool validPin = IMember.IsValidPin(pin);
-        while (!validPin)
-        {
+        while (!validPin)  {
+            Console.WriteLine("\n  !!!!!");
+            Console.WriteLine($"  Invalid input ({pin}): Please enter a valid PIN number.");
+            Console.Write("  PIN number  =>  ");
 
-            Console.WriteLine("---------------------------------------------------------------------------");
-            Console.WriteLine($"  Invalid input ({pin}): Please enter a valid pin number.");
-            Console.WriteLine("---------------------------------------------------------------------------\n");
-
-            Console.Write("=> ");
             pin = Console.ReadLine();
             validPin = IMember.IsValidPin(pin);
         }
 
+        Console.WriteLine("\n------------------------------------------------");
         IMember newMember = new Member(firstName, lastName, phone, pin);
-
         Program.memberCollection.Add(newMember);
 
-        Console.Write("\n  Press enter to return to staff menu...");
+        Console.WriteLine("\n================================================");
+        Console.Write("  Press Enter to return to staff menu...");
         Console.ReadLine();
 
     }
@@ -269,21 +265,19 @@ public class StaffFunctions
     {
         Console.Clear();
         Console.WriteLine("================================================");
-        Console.WriteLine("  Remove Member");
+        Console.WriteLine("                  Remove Member");
         Console.WriteLine("================================================");
-        Console.Write("\n Enter the member’s fist name:  => ");
+
+        Console.Write("\n  Enter the member’s fist name  =>  ");
         string firstName = Console.ReadLine();
-
-        Console.Write("\n Enter the member’s last name:  => ");
+        Console.Write("  Enter the member’s last name  =>  ");
         string lastName = Console.ReadLine();
-        
-        IMember newMember = new Member(firstName, lastName);
 
+        Console.WriteLine();
+        Program.memberCollection.Delete(new Member(firstName, lastName));
 
-        Program.memberCollection.Delete(newMember);
-
-
-        Console.Write("\n  Press enter to return to staff menu...");
+        Console.WriteLine("\n================================================");
+        Console.Write("  Press enter to return to staff menu...");
         Console.ReadLine();
 
     }
@@ -291,34 +285,31 @@ public class StaffFunctions
     {
         Console.Clear();
         Console.WriteLine("================================================");
-        Console.WriteLine("  Display A Member Phone Number");
+        Console.WriteLine("         Display A Member Phone Number");
         Console.WriteLine("================================================");
-        Console.Write("\n Enter the member’s fist name:  => ");
-        string firstName = Console.ReadLine();
 
-        Console.Write("\n Enter the member’s last name:  => ");
+        Console.Write("\n  Enter the member’s fist name:  =>  ");
+        string firstName = Console.ReadLine();
+        Console.Write("\n  Enter the member’s last name:  => ");
         string lastName = Console.ReadLine();
 
+
         IMember newMember = new Member(firstName, lastName);
+        IMember findResult = Program.memberCollection.Find(newMember);
 
-        if (Program.memberCollection.Search(newMember))
-        {
-            IMember foundMember = Program.memberCollection.Find(newMember);
-            Console.WriteLine($"\n The member contact Number is {0}", foundMember.ContactNumber);
-        }
+        Console.WriteLine("\n------------------------------------------------");
+        if (findResult != null)
+            Console.WriteLine("  The member contact number is: {0}", findResult.ContactNumber);
         else
-        {
-            Console.WriteLine($"Member {firstName}, {lastName} does not exist in the system");
-        }
+            Console.WriteLine($"  Member {firstName} {lastName} does not exist.");
 
-
-        Console.Write("\n  Press enter to return to staff menu...");
+        Console.WriteLine("\n================================================");
+        Console.Write("  Press enter to return to staff menu...");
         Console.ReadLine();
-
     }
 
     //pre-condition: 
-    public void PrintBorrowersofMovie() {
+    public void PrintBorrowersOfMovie() {
         //Checks if the movie (IMovie) exists in the list?
         //If number of total copies == number of available copies
         //Return "no one is currently borriwing this movie"
@@ -331,28 +322,25 @@ public class StaffFunctions
         Console.WriteLine("================================================");
         Console.WriteLine("         Display Borrowers of a Movie");
         Console.WriteLine("================================================");
-        Console.WriteLine("Please enter a movie to view members borrowing the movie");
+
+        Console.Write("\n  Please enter the movie title  =>  ");
         string movie = Console.ReadLine();
+        Console.WriteLine();
 
         IMovie searchResult = Program.movieCollection.Search(movie);
         if (searchResult == null)
-        {
-            Console.WriteLine("Movie does not exist");
-        }
-        else
-        {
+            Console.WriteLine("  Movie does not exist");
+        else {
             if (searchResult.AvailableCopies == searchResult.TotalCopies)
-            {
-                Console.WriteLine("No one is borrowing this movie currently");
-            }
-            else
-            {
-                Console.WriteLine("List of people currently borrowing " + searchResult + ": \n");
-                Console.WriteLine(searchResult.Borrowers.ToString());
+                Console.WriteLine("  No one is borrowing this movie currently.");
+            else {
+                Console.WriteLine("  Borrowers of {0}:\n{1}", searchResult.Title, 
+                                                              searchResult.Borrowers.ToString());
             }
         }
 
-        Console.Write("\n  Press enter to return to staff menu...");
+        Console.WriteLine("\n================================================");
+        Console.Write("  Press enter to return to staff menu...");
         Console.ReadLine();
     }
 }

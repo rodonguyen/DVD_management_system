@@ -64,7 +64,8 @@ class MemberCollection : IMemberCollection
     {
         if (!IsFull())     
         {
-            if (!Search(member)) {
+            if (!Search(member))
+            {
                 //System.Console.WriteLine($"Adding member {member.ToString()}...");
                 for (int i = 0; i < count + 1; i++)
                 {
@@ -82,15 +83,13 @@ class MemberCollection : IMemberCollection
                     }
                 }
                 count++;
+                Console.WriteLine($"  Member {member.ToString()} is added to the system.");
             }
             else
-            {
-                Console.WriteLine($"Member {member.ToString()} already exists in the system");
-            }
-            
+                Console.WriteLine($"  Member {member.ToString()} already exists in the system.");
         }
         else
-            System.Console.WriteLine("Maximum number of member was achieved. No more members can be added.");
+            Console.WriteLine("  Maximum number of member was achieved. No more members can be added.");
     }
 
     // Remove a given member out of this member collection
@@ -113,10 +112,9 @@ class MemberCollection : IMemberCollection
             members[count - 1] = null;
             count--;
 
-            //Console.WriteLine("\n Done!");
-
+            Console.WriteLine("  Member {0} is successfully removed.", aMember.ToString());
         } else
-            System.Console.WriteLine("Member {0} cannot be deleted as they do not exist in the system", aMember.ToString());
+            Console.WriteLine("  Member {0} cannot be deleted as they do not exist in the system", aMember.ToString());
 
     }
 
@@ -139,7 +137,6 @@ class MemberCollection : IMemberCollection
             else
                 max = mid - 1;
         }
-        //System.Console.WriteLine("member {0} is not found in this MemberCollection Object.", member.ToString());
         return false;
     }
 
@@ -162,7 +159,6 @@ class MemberCollection : IMemberCollection
             else
                 max = mid - 1;
         }
-        System.Console.WriteLine("member {0} is not found in this MemberCollection Object.", member.ToString());
         return null;
     }
 
@@ -185,9 +181,9 @@ class MemberCollection : IMemberCollection
     // Post-condition: a string containing the information about all the members in this member collection is returned
     public string ToString()
     {
-        string s = "";
+        string s = "  ";
         for (int i = 0; i < count; i++)
-            s = s + members[i].ToString() + "\n";
+            s = s + members[i].ToString() + "\n  ";
         return s;
     }
 }

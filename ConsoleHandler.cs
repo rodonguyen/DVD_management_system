@@ -100,7 +100,7 @@ class ConsoleHandler
         while (!isValidChoice) {
             Console.Clear();
             Console.WriteLine("---------------------------------------------------------------------------");
-            Console.WriteLine($"  Invalid choice ({choice}): Your choice must be an integer from 0 to 6!");
+            Console.WriteLine($"  Invalid choice ({choice}). Must be an integer from 0 to 6!");
             Console.WriteLine("---------------------------------------------------------------------------\n");
             DisplayStaffMenu();
             Console.Write("\n\n  Enter the staff menu action (1/2/3/4/5/6/0) => ");
@@ -142,7 +142,7 @@ class ConsoleHandler
                 break;
             case 6:
                 //Display a member’s contact phone number, given the member’s full name.
-                staffFunctions.PrintBorrowersofMovie();
+                staffFunctions.PrintBorrowersOfMovie();
                 StaffMenu();
                 break;
         }

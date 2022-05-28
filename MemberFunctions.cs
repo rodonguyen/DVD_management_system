@@ -82,15 +82,12 @@ class MemberFunctions
             }
             else
             {
-               
                 Console.WriteLine("  The movie is successfully borrowed");
             }
         }
 
         //Current user borrows the movue
-        
 
-        
         Console.Write("\n  Press enter to return to member menu...");
         Console.ReadLine();
 
@@ -110,7 +107,7 @@ class MemberFunctions
         
         if (searchedMovie.RemoveBorrower(currentUser))
         {
-            Console.WriteLine("The movie is successfully returned, have a nice day");
+            Console.WriteLine("The movie is successfully returned, have a nice day!");
         }
         else
         {
