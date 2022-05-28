@@ -11,6 +11,23 @@ public class StaffFunctions
         return isInt;
     }
 
+    //private static string CheckString(String input)
+    //{
+    //    int num;
+    //    bool isInt = int.TryParse(input, out num);
+    //    while (isInt)    {
+    //        Console.WriteLine("---------------------------------------------------------------------------");
+    //        Console.WriteLine($"  Invalid input ({input}): Please enter a word.");
+    //        Console.WriteLine("---------------------------------------------------------------------------\n");
+
+    //        Console.Write("=> ");
+    //        input = Console.ReadLine();
+    //        isInt = int.TryParse(input, out num);
+    //    }
+
+    //    return input;
+    //}
+
     private static MovieGenre SelectMovieGenre()
     {
         DisplaySelectMovieGenre();
@@ -18,16 +35,13 @@ public class StaffFunctions
         string genre = Console.ReadLine();
         bool isGenreValid = ConsoleHandler.CheckChoice(genre, 1, 5);
 
-        while (!isGenreValid)
-        {
+        while (!isGenreValid) {
             Console.WriteLine("\n  !!!!!");
             Console.WriteLine($"  Invalid choice ({genre}): Your choice must be an integer from 1 to 5!");
             Console.Write("  Re-enter your choice (1/2/3/4/5) => ");
             genre = Console.ReadLine();
             isGenreValid = ConsoleHandler.CheckChoice(genre, 1, 5);
         }
-
-
         return (MovieGenre)Convert.ToInt32(genre);
     }
 
@@ -37,8 +51,7 @@ public class StaffFunctions
         string classification = Console.ReadLine();
         bool isValidGenre = ConsoleHandler.CheckChoice(classification, 1, 4);
 
-        while (!isValidGenre)
-        {
+        while (!isValidGenre) {
             Console.WriteLine("\n  !!!!!");
             Console.WriteLine($"  Invalid choice ({classification}): Your choice must be an integer from 1 to 4!");
             Console.Write("  Re-enter your choice (1/2/3/4) => ");
@@ -68,8 +81,7 @@ public class StaffFunctions
         return int.Parse(duration);
     }
 
-    private static int EnterMovieCopies(string prompt)
-    {
+    private static int EnterMovieCopies(string prompt) {
         Console.WriteLine("\n--------------------------------------------------");
         Console.Write($"  {prompt}  =>  ");
         string copiesNum = Console.ReadLine();
@@ -88,8 +100,7 @@ public class StaffFunctions
     }
 
 
-    private static void DisplaySelectMovieGenre()
-    {
+    private static void DisplaySelectMovieGenre() {
         Console.WriteLine("\n--------------------------------------------------");
         Console.WriteLine("  Select the movie genre:");
         Console.WriteLine("    1. Action");
@@ -99,8 +110,7 @@ public class StaffFunctions
         Console.WriteLine("    5. Western");
         Console.Write("  Enter your choice (1/2/3/4/5)  =>  ");
     }
-    private static void DisplaySelectMovieClassification()
-    {
+    private static void DisplaySelectMovieClassification() {
         Console.WriteLine("\n--------------------------------------------------");
         Console.WriteLine("  Select the movie classification:");
         Console.WriteLine("    1. G");
@@ -123,8 +133,7 @@ public class StaffFunctions
     // If the movie is not new (the library has some DVDs of this
     // movie), then only the total quantity of the movie DVDs needs to be
     // updated, but the information about the movie needs not to be re-entered.
-    public void AddNewDvD(IMovieCollection movieCollection)
-    {
+    public void AddNewDvD() {
         Console.Clear();
         Console.WriteLine("================================================");
         Console.WriteLine("             Add New Movie DVDs");
@@ -132,13 +141,13 @@ public class StaffFunctions
         Console.Write("\n  Enter the movie title  => ");
         string movie = Console.ReadLine();
 
-        IMovie iMovie = movieCollection.Search(movie);
+        IMovie iMovie = Program.movieCollection.Search(movie);
 
         //If the movie is new
         if (iMovie == null)
         {
-            Console.WriteLine("\n  You are adding a new movie");
-            Console.WriteLine("  Please add a few more details about the movie");
+            Console.WriteLine("\n  You are adding a new movie!");
+            Console.WriteLine("  Please add a few more details about this movie");
 
             /*
             Console.Write("\n Enter the movie genre:  => ");
@@ -150,12 +159,9 @@ public class StaffFunctions
             MovieGenre genre = SelectMovieGenre();
             MovieClassification classification = SelectMovieClassification();
             int duration = EnterMovieDuration();
-
             int numCopies = EnterMovieCopies("Enter the number of copies");
 
-            IMovie newMovie = new Movie(movie, genre, classification, duration, numCopies);
-            movieCollection.Insert(newMovie);
-
+            Program.movieCollection.Insert(new Movie(movie, genre, classification, duration, numCopies));
             Console.WriteLine( $"\n  The movie ({ movie}) was added to the database!");
         }
         else //If the movie is not new
@@ -170,16 +176,16 @@ public class StaffFunctions
         Console.ReadLine();
     }
 
-    public void DeleteDvD(IMovieCollection movieCollection)
+    public void DeleteDvD()
     {
         Console.Clear();
         Console.WriteLine("================================================");
-        Console.WriteLine("  Delete DvD");
+        Console.WriteLine("                Remove DVD");
         Console.WriteLine("================================================");
         Console.Write("\n  Enter the movie title:  => ");
         string movie = Console.ReadLine();
 
-        IMovie iMovie = movieCollection.Search(movie);
+        IMovie iMovie = Program.movieCollection.Search(movie);
 
         if (iMovie == null)
         {
@@ -196,7 +202,7 @@ public class StaffFunctions
             }
             if(iMovie.TotalCopies <= 0)
             {
-                movieCollection.Delete(iMovie);
+                Program.movieCollection.Delete(iMovie);
                 Console.Write("\n  All DVD copies of {0} were removed. The movie was deleted from the database", movie);
             }
         }
@@ -205,7 +211,7 @@ public class StaffFunctions
         Console.ReadLine();
     }
 
-    public void AddMember(IMemberCollection memberCollection)
+    public void AddMember()
     {
         Console.Clear();
         Console.WriteLine("================================================");
@@ -213,10 +219,10 @@ public class StaffFunctions
         Console.WriteLine("================================================");
         Console.WriteLine("\n  You have selected to Register a new member.");
         Console.Write("\n  Enter the member’s first name:  => ");
-        string firstName = ConsoleHandler.CheckString(Console.ReadLine());
+        string firstName = Console.ReadLine();
 
         Console.Write("\n  Enter the member’s last name:  => ");
-        string lastName = ConsoleHandler.CheckString(Console.ReadLine());
+        string lastName = Console.ReadLine();
 
         Console.Write("\n  Enter the member’s contact phone number:  => ");
 
@@ -224,7 +230,6 @@ public class StaffFunctions
         bool valid = IMember.IsValidContactNumber(phone);
         while (!valid)
         {
-
             Console.WriteLine("---------------------------------------------------------------------------");
             Console.WriteLine($"  Invalid input ({phone}): Please enter a valid phone number.");
             Console.WriteLine("---------------------------------------------------------------------------\n");
@@ -252,14 +257,14 @@ public class StaffFunctions
 
         IMember newMember = new Member(firstName, lastName, phone, pin);
 
-        memberCollection.Add(newMember);
+        Program.memberCollection.Add(newMember);
 
         Console.Write("\n  Press enter to return to staff menu...");
         Console.ReadLine();
 
     }
 
-    public void RemoveMember(IMemberCollection memberCollection)
+    public void RemoveMember()
     {
         Console.Clear();
         Console.WriteLine("================================================");
@@ -272,16 +277,16 @@ public class StaffFunctions
         string lastName = Console.ReadLine();
         
         IMember newMember = new Member(firstName, lastName);
-        
-        
-        memberCollection.Delete(newMember);
+
+
+        Program.memberCollection.Delete(newMember);
 
 
         Console.Write("\n  Press enter to return to staff menu...");
         Console.ReadLine();
 
     }
-    public void DisplayMemberPhoneNumber(IMemberCollection memberCollection)
+    public void DisplayMemberPhoneNumber()
     {
         Console.Clear();
         Console.WriteLine("================================================");
@@ -295,10 +300,10 @@ public class StaffFunctions
 
         IMember newMember = new Member(firstName, lastName);
 
-        if (memberCollection.Search(newMember))
+        if (Program.memberCollection.Search(newMember))
         {
-            IMember foundMember = memberCollection.Find(newMember);
-            Console.WriteLine("\n The member contact Number is {0}", foundMember.ContactNumber);
+            IMember foundMember = Program.memberCollection.Find(newMember);
+            Console.WriteLine($"\n The member contact Number is {0}", foundMember.ContactNumber);
         }
         else
         {
@@ -312,7 +317,7 @@ public class StaffFunctions
     }
 
     //pre-condition: 
-    public void PrintBorrowersofMovie(IMovieCollection movieCollection) {
+    public void PrintBorrowersofMovie() {
         //Checks if the movie (IMovie) exists in the list?
         //If number of total copies == number of available copies
         //Return "no one is currently borriwing this movie"
@@ -323,25 +328,26 @@ public class StaffFunctions
         //return to the main menu
         Console.Clear();
         Console.WriteLine("================================================");
-        Console.WriteLine("  Display Movie Borrowers");
+        Console.WriteLine("         Display Borrowers of a Movie");
         Console.WriteLine("================================================");
         Console.WriteLine("Please enter a movie to view members borrowing the movie");
         string movie = Console.ReadLine();
-        IMovie result = movieCollection.Search(movie); //Searches for the movie
-        if (result == null)
+
+        IMovie searchResult = Program.movieCollection.Search(movie);
+        if (searchResult == null)
         {
             Console.WriteLine("Movie does not exist");
         }
         else
         {
-            if (result.AvailableCopies == result.TotalCopies) //Available copies == total copies meaning no one has borrowed the movie
+            if (searchResult.AvailableCopies == searchResult.TotalCopies)
             {
                 Console.WriteLine("No one is borrowing this movie currently");
             }
             else
             {
-                Console.WriteLine("List of people currently borrowing " + result + ": \n");
-                Console.WriteLine(result.Borrowers.ToString());
+                Console.WriteLine("List of people currently borrowing " + searchResult + ": \n");
+                Console.WriteLine(searchResult.Borrowers.ToString());
             }
         }
 

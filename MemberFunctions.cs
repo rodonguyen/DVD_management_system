@@ -4,13 +4,13 @@ using System.Text;
 
 class MemberFunctions
 {
-    public static void listOfMovies(IMovieCollection movieCollection) {
+    public static void ListOfMovies() {
         Console.Clear();
         Console.WriteLine("================================================");
         Console.WriteLine("  Movie Collection");
         Console.WriteLine("================================================");
         //What happens when the movie collection is empty when calling ToArray();
-        IMovie[] movieList = movieCollection.ToArray();
+        IMovie[] movieList = Program.movieCollection.ToArray();
         //Is printing the array a better solution than printing the tree
         for (int i = 0; i < movieList.Length; i++)
         {
@@ -32,21 +32,17 @@ class MemberFunctions
         Console.ReadLine();
     }
 
-    public static void displayMovieInformation(IMovieCollection movieCollection)
+    public static void DisplayMovieInformation(IMovieCollection movieCollection)
     {
         Console.Clear();
         Console.WriteLine("================================================");
         Console.WriteLine("  Movie Information");
         Console.WriteLine("================================================");
-        //Display information about a movie
-        Console.WriteLine("Please enter movie name:");
 
-        //Read the string input of a movie 
-        string movie = ConsoleHandler.CheckString(Console.ReadLine());
+        Console.WriteLine("  Enter the movie name:");
+        string movie = Console.ReadLine();
        
-
         IMovie searchedMovie = movieCollection.Search(movie);
-
         if (searchedMovie == null)
         {
             Console.WriteLine("Movie does not exist in the system");
@@ -54,14 +50,12 @@ class MemberFunctions
         else {
             Console.WriteLine(searchedMovie.ToString());
         }
-        
-        //print the movie's information 
-        
+
         Console.Write("\n  Press enter to return to member menu...");
         Console.ReadLine();
     }
 
-    public static void borrowAMovie(IMovieCollection movieCollection, IMember currentUser)
+    public static void BorrowAMovie(IMember currentUser)
     {
 
         //How does it know which user to add??
@@ -70,26 +64,26 @@ class MemberFunctions
         Console.WriteLine("================================================");
         Console.WriteLine("  Borrow Movie");
         Console.WriteLine("================================================");
-        Console.WriteLine("What movie would you like to borrow?");
+        Console.WriteLine("  What movie would you like to borrow?");
 
         //Looking for the movie
         string movie = Console.ReadLine();
 
-        IMovie searchedMovie = movieCollection.Search(movie);
+        IMovie searchedMovie = Program.movieCollection.Search(movie);
         if (searchedMovie == null)
         {
-            Console.WriteLine("Movie does not exist in the system");
+            Console.WriteLine("  Movie does not exist in the system");
         }
         else
         {
             if (!searchedMovie.AddBorrower(currentUser))
             {
-                Console.WriteLine("Borrowing movie unsucessful");
+                Console.WriteLine("  Borrowing movie unsucessful");
             }
             else
             {
                
-                Console.WriteLine("The movie is successfully borrowed");
+                Console.WriteLine("  The movie is successfully borrowed");
             }
         }
 
@@ -102,17 +96,17 @@ class MemberFunctions
 
     }
 
-    public static void returnAMovie(IMovieCollection movieCollection, IMember currentUser) {
+    public static void ReturnAMovie(IMember currentUser) {
         Console.Clear();
         Console.WriteLine("================================================");
-        Console.WriteLine("  Return Movie");
+        Console.WriteLine("          Return a Movie");
         Console.WriteLine("================================================");
         Console.WriteLine("What movie would you like to return?:");
 
         //Looking for the movie
         string movie = Console.ReadLine();
 
-        IMovie searchedMovie = movieCollection.Search(movie);
+        IMovie searchedMovie = Program.movieCollection.Search(movie);
         
         if (searchedMovie.RemoveBorrower(currentUser))
         {
@@ -120,10 +114,7 @@ class MemberFunctions
         }
         else
         {
-            //Current user borrows the movue
             Console.WriteLine("You do not have a copy of that movie to return");
-
-
         }
 
         Console.Write("\n  Press enter to return to member menu...");
@@ -131,15 +122,14 @@ class MemberFunctions
 
     }
 
-    public static void displayBorrowingMovies(IMember member) {
-        
+    public static void DisplayBorrowingMovies(IMember member) {
         // Finding all borrowing movies
         MovieCollection borrowingMovies = new MovieCollection();
         foreach (Movie movie in Program.movieCollection.ToArray())
             if (movie.Borrowers.Search(member))
                 borrowingMovies.Insert(movie);
 
-        // Displaying borrowing movies
+        // Displaying the borrowing movies
         Console.Clear();
         Console.WriteLine("================================================");
 
@@ -151,7 +141,7 @@ class MemberFunctions
         Console.ReadLine();
     }
 
-    public static void displayTop3Movies() {
+    public static void DisplayTop3Movies() {
         Movie[] top3Movies = new Movie[] { null, null, null };
         int[] top3NoBorrowings = new int[]{0,0,0};
 

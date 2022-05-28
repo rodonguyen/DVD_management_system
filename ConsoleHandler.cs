@@ -118,32 +118,32 @@ class ConsoleHandler
                 break;
             case 1:
                 // Add new DVDs of a movie to the system.
-                staffFunctions.AddNewDvD(Program.movieCollection);
+                staffFunctions.AddNewDvD();
                 StaffMenu();
                 break;
             case 2:
                 //Remove DVDs of a movie from the system.
-                staffFunctions.DeleteDvD(Program.movieCollection);
+                staffFunctions.DeleteDvD();
                 StaffMenu();
                 break;
             case 3:
                 //Register a new member with the system.
-                staffFunctions.AddMember(Program.memberCollection);
+                staffFunctions.AddMember();
                 StaffMenu();
                 break;
             case 4:
                 //Remove a registered member from the system.
-                staffFunctions.RemoveMember(Program.memberCollection);
+                staffFunctions.RemoveMember();
                 StaffMenu();
                 break;
             case 5:
                 //Display a member’s contact phone number, given the member’s full name.
-                staffFunctions.DisplayMemberPhoneNumber(Program.memberCollection);
+                staffFunctions.DisplayMemberPhoneNumber();
                 StaffMenu();
                 break;
             case 6:
                 //Display a member’s contact phone number, given the member’s full name.
-                staffFunctions.PrintBorrowersofMovie(Program.movieCollection);
+                staffFunctions.PrintBorrowersofMovie();
                 StaffMenu();
                 break;
         }
@@ -209,27 +209,27 @@ class ConsoleHandler
                 MainMenu();
                 break;
             case 1:
-                MemberFunctions.listOfMovies(Program.movieCollection);
+                MemberFunctions.ListOfMovies();
                 MemberMenu(member);
                 break;
             case 2:
-                MemberFunctions.displayMovieInformation(Program.movieCollection);
+                MemberFunctions.DisplayMovieInformation(Program.movieCollection);
                 MemberMenu(member);
                 break;
             case 3:
-                MemberFunctions.borrowAMovie(Program.movieCollection, member);
+                MemberFunctions.BorrowAMovie( member);
                 MemberMenu(member);
                 break;
             case 4:
-                MemberFunctions.returnAMovie(Program.movieCollection, member);
+                MemberFunctions.ReturnAMovie(member);
                 MemberMenu(member);
                 break;
             case 5:
-                MemberFunctions.displayBorrowingMovies(member);
+                MemberFunctions.DisplayBorrowingMovies(member);
                 MemberMenu(member);
                 break;
             case 6:
-                MemberFunctions.displayTop3Movies();
+                MemberFunctions.DisplayTop3Movies();
                 MemberMenu(member);
                 break;
         }
@@ -279,28 +279,4 @@ class ConsoleHandler
         else
             return false;
     }
-
-
-
-    public static string CheckString(String input)
-    {
-        int num;
-        bool isInt = int.TryParse(input, out num);
-
-        while (isInt)
-        {
-            Console.WriteLine("---------------------------------------------------------------------------");
-            Console.WriteLine($"  Invalid input ({input}): Please enter a word.");
-            Console.WriteLine("---------------------------------------------------------------------------\n");
-
-            Console.Write("=> ");
-            input = Console.ReadLine();
-            isInt = int.TryParse(input, out num);
-        }
-
-        return input;
-    }
-
-    
-
 }
