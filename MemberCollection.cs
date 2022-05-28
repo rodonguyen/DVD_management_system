@@ -65,7 +65,7 @@ class MemberCollection : IMemberCollection
         if (!IsFull())     
         {
             if (!Search(member)) {
-                System.Console.WriteLine($"Adding member {member.ToString()}...");
+                //System.Console.WriteLine($"Adding member {member.ToString()}...");
                 for (int i = 0; i < count + 1; i++)
                 {
                     // Reach the position after the final member OR no member exists so assign to the first element
@@ -82,7 +82,6 @@ class MemberCollection : IMemberCollection
                     }
                 }
                 count++;
-                Console.Write($" Member {member.ToString()} was added to the system");
             }
             else
             {
@@ -113,11 +112,11 @@ class MemberCollection : IMemberCollection
             
             members[count - 1] = null;
             count--;
-            
-            Console.Write($" Member {aMember.ToString()} was removed from the system");
+
+            //Console.WriteLine("\n Done!");
 
         } else
-            System.Console.WriteLine("Member {0} does not exist in the system: ", aMember.ToString());
+            System.Console.WriteLine("Member {0} cannot be deleted as they do not exist in the system", aMember.ToString());
 
     }
 

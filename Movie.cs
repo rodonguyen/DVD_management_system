@@ -71,13 +71,28 @@ public class Movie : IMovie
     //                  if the member is in the borrowers list, do not add the member to the borrowers list and return false.  
     public bool AddBorrower(IMember member)
     {
-        if (availablecopies >= 1  &&  !borrowers.Search(member)  &&  !borrowers.IsFull())  {
-            borrowers.Add(member);
-            availablecopies--;
-            noborrows++;
-            return true;
+        if (!borrowers.Search(member))
+        {
+            if (availablecopies >= 1 && !borrowers.IsFull())
+            {
+                borrowers.Add(member);
+                availablecopies--;
+                noborrows++;
+                return true;
+            }
+            else
+            {
+                
+                Console.WriteLine("No more copies of this movie are available for borrowing");
+                return false;
+            }
+
         }
-        else return false;
+        else
+        {
+            Console.WriteLine("You already have a copy of the movie.");
+            return false;
+        }
     }
 
     //Remove a member from the borrower list of this movie
@@ -88,10 +103,12 @@ public class Movie : IMovie
     public bool RemoveBorrower(IMember member)
     {
         if (borrowers.Search(member) == true)  {
+            
             borrowers.Delete(member);
             availablecopies++;
             return true;
         }
+
         return false;
     }
 
