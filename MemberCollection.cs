@@ -112,7 +112,7 @@ class MemberCollection : IMemberCollection
             members[count - 1] = null;
             count--;
 
-            Console.WriteLine("  Member {0} is successfully removed.", aMember.ToString());
+            
         } else
             Console.WriteLine("  Member {0} cannot be deleted as they do not exist in the system", aMember.ToString());
 
