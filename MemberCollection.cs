@@ -110,8 +110,9 @@ class MemberCollection : IMemberCollection
             
             members[count - 1] = null;
             count--;
+            Console.WriteLine("  Success!");
 
-            
+
         } else
             Console.WriteLine("  Member {0} cannot be deleted as they do not exist in the system", aMember.ToString());
 

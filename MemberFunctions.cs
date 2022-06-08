@@ -104,7 +104,7 @@ class MemberFunctions
 
         IMovie searchedMovie = Program.movieCollection.Search(movie);
         
-        if (searchedMovie.RemoveBorrower(currentUser))
+        if (searchedMovie != null && searchedMovie.RemoveBorrower(currentUser))
         {
             Console.WriteLine("  The movie is successfully returned, have a nice day!");
         }
@@ -130,8 +130,10 @@ class MemberFunctions
         Console.WriteLine("================================================");
 
         Console.WriteLine("  Your borrowing movies:");
+
         foreach (Movie movie in borrowingMovies.ToArray())
             Console.WriteLine("  "+movie.ToString());
+
         Console.WriteLine("================================================");
         Console.Write("\n  Press enter to return to member menu...");
         Console.ReadLine();
@@ -139,10 +141,12 @@ class MemberFunctions
 
     public static void DisplayTop3Movies() {
         Movie[] top3Movies = new Movie[] { null, null, null };
-        int[] top3NoBorrowings = new int[]{0,0,0};
+        int[] top3NoBorrowings = new int[]{-1,-1,-1};
+        
 
         foreach (Movie movie in Program.movieCollection.ToArray()) {
             int objNoBorrowing = movie.NoBorrowings;
+            
             // Place the movie.Title and its NoBorrowings in the top3 list
             // but maintain the number of borrowings' descending order
             if (objNoBorrowing > top3NoBorrowings[0])
@@ -172,7 +176,7 @@ class MemberFunctions
         Console.WriteLine("================================================");
         Console.WriteLine("  Top3 Most Borrowed Movies:");
         for (int i = 0; i < 3; i++)     {
-            if (top3NoBorrowings[i] == 0)
+            if (top3NoBorrowings[i] == -1)
                 Console.WriteLine($"    Top {i + 1} - Not available");
             else
                 Console.WriteLine($"    Top {i + 1} - {top3Movies[i].Title} (borrowed {top3NoBorrowings[i]} times)");

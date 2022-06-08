@@ -170,7 +170,7 @@ public class StaffFunctions
             iMovie.TotalCopies += numCopies;
             iMovie.AvailableCopies += numCopies;
 
-            Console.WriteLine($"\n  The number of DVDS is updated ({numCopies} copies).");
+            Console.WriteLine($"\n  The number of DVDS is updated (Total copies: {iMovie.TotalCopies}).");
         }
 
         Console.WriteLine("\n================================================");
@@ -189,11 +189,16 @@ public class StaffFunctions
 
         IMovie searchResult = Program.movieCollection.Search(movie);
 
-        if (searchResult == null)
-            Console.Write("\n  DVD copies of {0} cannot be deleted because that movie is not in the database", movie);
+        
+        if (searchResult == null) {
+            Console.WriteLine("\n  DVD copies of {0} cannot be deleted ", movie);
+            Console.WriteLine("  because that movie is not in the database");
+        }
+            
         else {
             int numCopies = EnterMovieCopies("Enter the number of DVD copies to remove");
 
+            
             if (searchResult.AvailableCopies < numCopies)
             {
                 Console.WriteLine("\n  Cannot remove {0} DVD copy/ies of the movie.", numCopies);
@@ -203,6 +208,7 @@ public class StaffFunctions
             else
             {
                 searchResult.TotalCopies -= numCopies;
+                searchResult.AvailableCopies -= numCopies;
 
                 if (searchResult.TotalCopies > 0)
                 {
@@ -218,6 +224,7 @@ public class StaffFunctions
 
         }
 
+        
         Console.WriteLine("\n================================================");
         Console.Write("  Press Enter to return to staff menu...");
         Console.ReadLine();
@@ -304,8 +311,11 @@ public class StaffFunctions
         
         Console.WriteLine();
         
-        if (request){
+        if (request)
+        {
             Program.memberCollection.Delete(toDelete);
+
+
         }
         else
         {
