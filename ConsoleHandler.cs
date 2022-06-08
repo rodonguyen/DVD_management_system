@@ -103,7 +103,6 @@ class ConsoleHandler
             Console.WriteLine($"  Invalid choice ({choice}). Must be an integer from 0 to 6!");
             Console.WriteLine("---------------------------------------------------------------------------\n");
             DisplayStaffMenu();
-            Console.Write("\n\n  Enter the staff menu action (1/2/3/4/5/6/0) => ");
             choice = Console.ReadLine();
             isValidChoice = CheckChoice(choice, 0, 6);
         }

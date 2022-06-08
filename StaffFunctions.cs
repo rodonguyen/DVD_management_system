@@ -165,9 +165,11 @@ public class StaffFunctions
         }
         else //If the movie is not new
         {
-            int numCopies = EnterMovieCopies("Enter the new TOTAL number of copies");
-            iMovie.TotalCopies = numCopies;
-            //do we need to update the available copies too?
+            int numCopies = EnterMovieCopies("Enter the number of new DvDs to add");
+            
+            iMovie.TotalCopies += numCopies;
+            iMovie.AvailableCopies += numCopies;
+
             Console.WriteLine($"\n  The number of DVDS is updated ({numCopies} copies).");
         }
 
