@@ -83,7 +83,6 @@ class MemberCollection : IMemberCollection
                     }
                 }
                 count++;
-                Console.WriteLine($"  Member {member.ToString()} is added to the system.");
             }
             else
                 Console.WriteLine($"  Member {member.ToString()} already exists in the system.");

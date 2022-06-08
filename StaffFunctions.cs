@@ -228,6 +228,7 @@ public class StaffFunctions
         Console.WriteLine("                  Add Member");
         Console.WriteLine("================================================");
 
+        
         Console.Write("\n  Enter the member’s first name  =>  ");
         string firstName = Console.ReadLine();
 
@@ -239,7 +240,8 @@ public class StaffFunctions
         Console.Write("  Enter the member’s contact phone number  => ");
         string phone = Console.ReadLine();
         bool isValidContactNumber = IMember.IsValidContactNumber(phone);
-        while (!isValidContactNumber)  {
+        while (!isValidContactNumber)
+        {
             Console.WriteLine("\n  !!!!!");
             Console.WriteLine($"  Invalid input ({phone}). Please enter a valid phone number.");
             Console.Write("  Phone number  =>  ");
@@ -252,7 +254,8 @@ public class StaffFunctions
         Console.Write("  Enter the member’s PIN  => ");
         string pin = Console.ReadLine();
         bool validPin = IMember.IsValidPin(pin);
-        while (!validPin)  {
+        while (!validPin)
+        {
             Console.WriteLine("\n  !!!!!");
             Console.WriteLine($"  Invalid input ({pin}): Please enter a valid PIN number.");
             Console.Write("  PIN number  =>  ");
@@ -265,7 +268,8 @@ public class StaffFunctions
         IMember newMember = new Member(firstName, lastName, phone, pin);
         Program.memberCollection.Add(newMember);
 
-        Console.WriteLine("\n================================================");
+
+            Console.WriteLine("\n================================================");
         Console.Write("  Press Enter to return to staff menu...");
         Console.ReadLine();
 

@@ -83,14 +83,14 @@ public class Movie : IMovie
             else
             {
                 
-                Console.WriteLine("No more copies of this movie are available for borrowing");
+                Console.WriteLine("  No more copies of this movie are available for borrowing");
                 return false;
             }
 
         }
         else
         {
-            Console.WriteLine("You already have a copy of the movie.");
+            Console.WriteLine("  You already have a copy of the movie.");
             return false;
         }
     }

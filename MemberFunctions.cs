@@ -15,7 +15,7 @@ class MemberFunctions
         for (int i = 0; i < movieList.Length; i++)
         {
             if (movieList[0] == null) { 
-                Console.WriteLine("Movie list is currently empty, please check back later");
+                Console.WriteLine("  Movie list is currently empty, please check back later");
                 return;
             }
             else
@@ -27,7 +27,7 @@ class MemberFunctions
         //print The list of movies is empty please try again later
         //else
         //print the list of movies in alphabetical order
-
+        Console.WriteLine("================================================");
         Console.Write("\n  Press enter to return to member menu...");
         Console.ReadLine();
     }
@@ -38,19 +38,18 @@ class MemberFunctions
         Console.WriteLine("================================================");
         Console.WriteLine("  Movie Information");
         Console.WriteLine("================================================");
-
-        Console.WriteLine("  Enter the movie name:");
+        Console.Write("\n  Enter the movie name  =>  ");
         string movie = Console.ReadLine();
        
         IMovie searchedMovie = movieCollection.Search(movie);
         if (searchedMovie == null)
         {
-            Console.WriteLine("Movie does not exist in the system");
+            Console.WriteLine("  Movie does not exist in the system");
         }
         else {
             Console.WriteLine(searchedMovie.ToString());
         }
-
+        Console.WriteLine("================================================");
         Console.Write("\n  Press enter to return to member menu...");
         Console.ReadLine();
     }
@@ -64,7 +63,7 @@ class MemberFunctions
         Console.WriteLine("================================================");
         Console.WriteLine("  Borrow Movie");
         Console.WriteLine("================================================");
-        Console.WriteLine("  What movie would you like to borrow?");
+        Console.Write("\n  Enter movie would you like to borrow  =>  ");
 
         //Looking for the movie
         string movie = Console.ReadLine();
@@ -87,7 +86,7 @@ class MemberFunctions
         }
 
         //Current user borrows the movue
-
+        Console.WriteLine("================================================");
         Console.Write("\n  Press enter to return to member menu...");
         Console.ReadLine();
 
@@ -98,7 +97,7 @@ class MemberFunctions
         Console.WriteLine("================================================");
         Console.WriteLine("          Return a Movie");
         Console.WriteLine("================================================");
-        Console.WriteLine("What movie would you like to return?:");
+        Console.Write("\n  Enter movie would you like to return  =>  ");
 
         //Looking for the movie
         string movie = Console.ReadLine();
@@ -107,13 +106,13 @@ class MemberFunctions
         
         if (searchedMovie.RemoveBorrower(currentUser))
         {
-            Console.WriteLine("The movie is successfully returned, have a nice day!");
+            Console.WriteLine("  The movie is successfully returned, have a nice day!");
         }
         else
         {
-            Console.WriteLine("You do not have a copy of that movie to return");
+            Console.WriteLine("  You do not have a copy of that movie to return");
         }
-
+        Console.WriteLine("================================================");
         Console.Write("\n  Press enter to return to member menu...");
         Console.ReadLine();
 
