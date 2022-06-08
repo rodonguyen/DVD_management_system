@@ -284,13 +284,27 @@ public class StaffFunctions
         string lastName = Console.ReadLine();
 
         Member toDelete = new Member(firstName, lastName);
+        bool request = true;
 
         foreach (Movie movie in Program.movieCollection.ToArray())
+        {
             if (movie.Borrowers.Search(toDelete))
-                movie.RemoveBorrower(toDelete);
-
+            {
+                request = false;
+                break;
+            }
+                
+        }
+        
         Console.WriteLine();
-        Program.memberCollection.Delete(toDelete);
+        
+        if (request){
+            Program.memberCollection.Delete(toDelete);
+        }
+        else
+        {
+            Console.WriteLine("Member was not deleted because they are currently borrowing movies");
+        }
 
         Console.WriteLine("\n================================================");
         Console.Write("  Press enter to return to staff menu...");

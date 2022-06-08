@@ -144,32 +144,28 @@ class MemberFunctions
 
         foreach (Movie movie in Program.movieCollection.ToArray()) {
             int objNoBorrowing = movie.NoBorrowings;
-            // Check if 'movie' is more popular than the third one in the current top3 list
-            if (objNoBorrowing > top3NoBorrowings[2])
+            // Place the movie.Title and its NoBorrowings in the top3 list
+            // but maintain the number of borrowings' descending order
+            if (objNoBorrowing > top3NoBorrowings[0])
             {
-                // Place the movie.Title and its NoBorrowings in the top3 list
-                // but maintain the number of borrowings' descending order
-                if (objNoBorrowing > top3NoBorrowings[0])
-                {
-                    top3NoBorrowings[2] = top3NoBorrowings[1];
-                    top3NoBorrowings[1] = top3NoBorrowings[0];
-                    top3NoBorrowings[0] = objNoBorrowing;
-                    top3Movies[2] = top3Movies[1];
-                    top3Movies[1] = top3Movies[0];
-                    top3Movies[0] = movie;
-                }
-                else if (objNoBorrowing <= top3NoBorrowings[0] && objNoBorrowing > top3NoBorrowings[1])
-                {
-                    top3NoBorrowings[2] = top3NoBorrowings[1];
-                    top3NoBorrowings[1] = objNoBorrowing;
-                    top3Movies[2] = top3Movies[1];
-                    top3Movies[1] = movie;
-                }
-                else if (objNoBorrowing <= top3NoBorrowings[1] && objNoBorrowing > top3NoBorrowings[2])
-                {
-                    top3NoBorrowings[2] = objNoBorrowing;
-                    top3Movies[2] = movie;
-                }
+                top3NoBorrowings[2] = top3NoBorrowings[1];
+                top3NoBorrowings[1] = top3NoBorrowings[0];
+                top3NoBorrowings[0] = objNoBorrowing;
+                top3Movies[2] = top3Movies[1];
+                top3Movies[1] = top3Movies[0];
+                top3Movies[0] = movie;
+            }
+            else if (objNoBorrowing > top3NoBorrowings[1])
+            {
+                top3NoBorrowings[2] = top3NoBorrowings[1];
+                top3NoBorrowings[1] = objNoBorrowing;
+                top3Movies[2] = top3Movies[1];
+                top3Movies[1] = movie;
+            }
+            else if (objNoBorrowing > top3NoBorrowings[2])
+            {
+                top3NoBorrowings[2] = objNoBorrowing;
+                top3Movies[2] = movie;
             }
         }
 
