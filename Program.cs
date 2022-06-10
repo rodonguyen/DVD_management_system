@@ -13,10 +13,10 @@ class Program
         //memberCollection.Add(new Member("Anthony", "Nguyen", "0450456788", "1234"));
         //memberCollection.Add(new Member("Dulce", "Acevedo", "0450456788", "1234"));
         //memberCollection.Add(new Member("Rodo", "N", "0123412341", "1111"));
+        //memberCollection.Add(new Member("a", "a", "0444455555", "1111"));
         //memberCollection.Add(new Member("D", "D", "0444455555", "1111"));
         //memberCollection.Add(new Member("C", "C", "0444455555", "1111"));
         //memberCollection.Add(new Member("A", "A", "0444455555", "1111"));
-        memberCollection.Add(new Member("a", "a", "0444455555", "1111"));
         //memberCollection.Add(new Member("E", "A", "0444455555", "1111"));
         //memberCollection.Add(new Member("E", "E", "0444455555", "1111"));
         //memberCollection.Add(new Member("F", "F", "0444455555", "2222"));

@@ -14,10 +14,10 @@ class MemberFunctions
 
         if (movieList.Length > 0)  {
             for (int i = 0; i < movieList.Length; i++)
-                    Console.WriteLine(movieList[i].ToString());
+                Console.WriteLine(movieList[i].ToString());
         } 
         else
-            Console.WriteLine("  Movie list is currently empty, please check back later.");
+            Console.WriteLine("\n  Movie list is currently empty, please check back later.\n");
 
         Console.WriteLine("================================================");
         Console.Write("\n  Press enter to return to member menu...");
