@@ -131,8 +131,11 @@ class MemberFunctions
 
         Console.WriteLine("  Your borrowing movies:");
 
-        foreach (Movie movie in borrowingMovies.ToArray())
-            Console.WriteLine("  "+movie.ToString());
+        if (borrowingMovies.ToArray().Length == 0)
+            Console.WriteLine("  < Empty >");
+        else
+            foreach (Movie movie in borrowingMovies.ToArray())
+                Console.WriteLine("  "+movie.ToString());
 
         Console.WriteLine("================================================");
         Console.Write("\n  Press enter to return to member menu...");

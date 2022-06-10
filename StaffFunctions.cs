@@ -296,8 +296,9 @@ public class StaffFunctions
         Console.WriteLine("\n------------------------------------------------");
         IMember newMember = new Member(firstName, lastName, phone, pin);
         Program.memberCollection.Add(newMember);
+        Console.WriteLine("  Done!");
 
-            Console.WriteLine("\n================================================");
+        Console.WriteLine("\n================================================");
         Console.Write("  Press Enter to return to staff menu...");
         Console.ReadLine();
 
@@ -326,9 +327,12 @@ public class StaffFunctions
             }                
         }
         Console.WriteLine();
-        
-        if (request) 
+
+        if (request)
+        {
             Program.memberCollection.Delete(toDeleteMember);
+            Console.WriteLine("  Done!");
+        }
         else
             Console.WriteLine("  Member is not deleted because they are currently borrowing DVD(s).");
 
@@ -347,7 +351,7 @@ public class StaffFunctions
 
         Console.Write("\n  Enter the member’s fist name:  =>  ");
         string firstName = Console.ReadLine();
-        Console.Write("\n  Enter the member’s last name:  => ");
+        Console.Write("  Enter the member’s last name:  => ");
         string lastName = Console.ReadLine();
 
 

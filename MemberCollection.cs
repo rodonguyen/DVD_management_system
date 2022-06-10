@@ -83,7 +83,7 @@ class MemberCollection : IMemberCollection
                     }
                 }
                 count++;
-                Console.WriteLine("  Member is added successfully!");
+                
             }
             else
                 Console.WriteLine($"  Member {member.ToString()} already exists in the system.");
@@ -111,9 +111,6 @@ class MemberCollection : IMemberCollection
             
             members[count - 1] = null;
             count--;
-            Console.WriteLine("  Member is removed successfully!");
-
-
         } else
             Console.WriteLine("  Member {0} cannot be deleted as they do not exist in the system", aMember.ToString());
 
