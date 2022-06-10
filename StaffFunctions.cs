@@ -17,11 +17,6 @@ public class StaffFunctions
         return isInt;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="">  </param>
-    /// <returns>  </returns>
     //private static string CheckString(String input)
     //{
     //    int num;
@@ -37,12 +32,6 @@ public class StaffFunctions
     //    return input;
     //}
 
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="">  </param>
-    /// <returns>  </returns>
     private static MovieGenre SelectMovieGenre()
     {
         DisplaySelectMovieGenre();
@@ -60,11 +49,6 @@ public class StaffFunctions
         return (MovieGenre)Convert.ToInt32(genre);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="">  </param>
-    /// <returns>  </returns>
     private static MovieClassification SelectMovieClassification()
     {
         DisplaySelectMovieClassification();
@@ -143,15 +127,6 @@ public class StaffFunctions
 
     // -------------------------- Main Console Staff Function ---------------------------
 
-
-    // Add new DvD movie to the system
-    // Pre-condition: NIL
-    // Post-condition: If the movie is new (the library currently does not any DVD of this movie), then all the information about
-    // the movie and the number of the new movie DVDs should be entered into
-    // the system;
-    // If the movie is not new (the library has some DVDs of this
-    // movie), then only the total quantity of the movie DVDs needs to be
-    // updated, but the information about the movie needs not to be re-entered.
     public void AddNewDvD() {
         Console.Clear();
         Console.WriteLine("================================================");
@@ -168,13 +143,6 @@ public class StaffFunctions
             Console.WriteLine("\n  You are adding a new movie!");
             Console.WriteLine("  Please add a few more details about this movie");
 
-            /*
-            Console.Write("\n Enter the movie genre:  => ");
-            MovieGenre genre = (MovieGenre)Convert.ToInt32(Console.ReadLine());
-
-            Console.Write("\n Enter the movie classification:  => ");
-            MovieClassification classification = (MovieClassification)Convert.ToInt32(Console.ReadLine());
-            */
             MovieGenre genre = SelectMovieGenre();
             MovieClassification classification = SelectMovieClassification();
             int duration = EnterMovieDuration();
@@ -183,7 +151,7 @@ public class StaffFunctions
             Program.movieCollection.Insert(new Movie(movie, genre, classification, duration, numCopies));
             Console.WriteLine( $"\n  The movie ({movie}) was added to the database!");
         }
-        else //If the movie is not new
+        else // If the movie is existed
         {
             int numCopies = EnterMovieCopies("Enter the number of new DvDs to add");
             
@@ -239,11 +207,8 @@ public class StaffFunctions
                     Program.movieCollection.Delete(searchResult);
                     Console.Write("\n  All the DVD copies of {0} are removed. \n  The movie is deleted from the database", movie);
                 }
-            }
-            
-
+            }           
         }
-
         
         Console.WriteLine("\n================================================");
         Console.Write("  Press Enter to return to staff menu...");
@@ -256,7 +221,6 @@ public class StaffFunctions
         Console.WriteLine("================================================");
         Console.WriteLine("                  Add Member");
         Console.WriteLine("================================================");
-
         
         Console.Write("\n  Enter the member’s first name  =>  ");
         string firstName = Console.ReadLine();
@@ -369,12 +333,7 @@ public class StaffFunctions
         Console.ReadLine();
     }
 
-    //pre-condition: 
     public void PrintBorrowersOfMovie() {
-        // Checks if the movie (IMovie) exists in the list?
-        // If number of total copies == number of available copies
-        // Return "no one is currently borriwing this movie"
-        // Else print the list of borrowers of that movie 
         Console.Clear();
         Console.WriteLine("================================================");
         Console.WriteLine("         Display Borrowers of a Movie");
