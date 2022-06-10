@@ -265,8 +265,7 @@ class ConsoleHandler
     }
 
 
-    public static bool CheckChoice(String inputString, int minValue, int maxValue)
-    {
+    public static bool CheckChoice(String inputString, int minValue, int maxValue) {
         bool isInt = int.TryParse(inputString, out int num);
         if (isInt) {
             bool isValidChoice = num <= maxValue && num >= minValue;
